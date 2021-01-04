@@ -1,28 +1,42 @@
 <div  id="background">
 <div id="cover">
-
+    <div>
+       <img src="../../assets/DEVICEMANAGER.svg" alt="Device Manager">
+    </div>
 </div>
-<form action="action_page.php">
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <div class="container">
-      <h1>New User</h1>
-      <hr>
+      <h1>Register</h1>
+      <br><br>
   
-      <label for="email"><b>First Name</b></label>
-      <input type="text"  placeholder="Enter Name" name="name" id="name" required>
-  
+      <label for="firstname"><b>First Name</b></label>
+      <input type="text"  placeholder="Enter first Name" formControlName="firstname" id="firstname">
+      <small class="text-danger" [class.d-none]="registerForm.get('firstname').valid || registerForm.get('firstname').untouched">First Name is required</small>
+      <br> <br>
+      <label for="lastname"><b>Last Name</b></label>
+      <input type="text"  placeholder="Enter last Name" formControlName="lastname" id="lastname">
+      <small class="text-danger" [class.d-none]="registerForm.get('lastname').valid || registerForm.get('lastname').untouched">Last Name is required</small>
+      <br> <br>
+      <label for="employeeID"><b>Employee Id</b></label>
+      <input type="text"  placeholder="Enter employee id" formControlName="employeeID" id="employeeID">
+      <small class="text-danger" [class.d-none]="registerForm.get('employeeID').valid || registerForm.get('employeeID').untouched">Employee Id is required</small>
+      <br> <br>
       <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
-  
-      <label for="psw-repeat"><b>Repeat Password</b></label>
-      <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
+      <input type="password" placeholder="Enter Password" formControlName="psw" id="psw">
+      <small class="text-danger" [class.d-none]="registerForm.get('psw').valid || registerForm.get('psw').untouched">Password is required</small>
+      <br> <br>
+      <label for="psw-repeat"><b>Re-type Password</b></label>
+      <input type="password" placeholder="Re-enter Password" formControlName="pswrepeat" id="pswrepeat">
+      <small class="text-danger" [class.d-none]="registerForm.get('pswrepeat').valid || registerForm.get('pswrepeat').untouched">Confirm Password is required</small>
+      <br> <br>
       <hr>
   
-      <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+      <!-- <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p> -->
       <button type="submit" class="registerbtn">Register</button>
     </div>
   
     <div class="container signin">
-      <p>Already have an account? <a [routerLink]="['/login']">Sign in</a>.</p>
+      <p>Already have an account? <a routerLink="/login">Sign in</a>.</p>
     </div>
   </form>
 </div>

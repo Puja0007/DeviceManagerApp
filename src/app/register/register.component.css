@@ -3,6 +3,7 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
     #background{
     display: flex;
@@ -13,35 +14,39 @@
 }
 
 #cover{
-    height: 50vw;
-    width: 50vw;
+    height: 45vw;
+    width: 50%;
+    background-color: #f7f8fc;
     background-image: url(../../assets/BG.svg);
     background-size: 100%;
     background-repeat: no-repeat;
     overflow-x: hidden;
 }
 .container {
-    padding: 100px;
+    padding-left: 250px;
+    padding-right: 250px;
+    padding-top: 10px;
     margin: auto;
   }
   
   /* Full-width input fields */
   input[type=text], input[type=password] {
-    width: 100%;
+    width: 300px;
     padding: 15px;
     margin: 5px 0 22px 0;
-    display: inline-block;
+    display: block;
     outline: none;
-    outline-style: none;
-    border-top: none;
-    border-left: none;
-    border-right: none;
+    outline-style: solid #eeeeee 1px;
+    border-top: solid #eeeeee 1px;;
+    border-left: solid #eeeeee 1px;;
+    border-right: nsolid #eeeeee 1px;
     border-bottom: solid #eeeeee 1px;
+    border-radius: 5px;
     background: transparent;
   }
   
   input[type=text]:focus, input[type=password]:focus {
-    background-color: #ddd;
+    box-shadow: 0 0 8px 0 dodgerblue;
     outline: none;
   }
   
@@ -65,11 +70,14 @@
   
   .registerbtn:hover {
     opacity:1;
+    outline: none;
+    border: none;
   }
   
   /* Add a blue text color to links */
   a {
     color: dodgerblue;
+    float: right;
   }
   
   /* Set a grey background color and center the text of the "sign in" section */
@@ -78,3 +86,7 @@
     text-align: center;
   }
 /* Add padding to containers */
+input.ng-touched.ng-invalid{
+  border: 1px solid red;
+  box-shadow: 0 0 13px inset rgba(255,0,0,0.2);
+}
