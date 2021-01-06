@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {RegistrationModel} from '../models/register.model';
 import {FormGroup,FormBuilder,Validators, FormControl} from '@angular/forms';
 import { MustMatch } from '../_helpers/must-match.validators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +12,7 @@ import { MustMatch } from '../_helpers/must-match.validators';
 export class RegisterComponent implements OnInit {
   registerForm:FormGroup;
   submitted:boolean=false;
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,private route:Router) { }
 
   ngOnInit(): void {
 
@@ -26,14 +27,36 @@ export class RegisterComponent implements OnInit {
       validator: MustMatch('psw','pswrepeat')
     });
   }
-  get f() { return this.registerForm.controls; }
+  // get f() { return this.registerForm.controls; }
+
+  private markFormGroupTouched(formGroup: FormGroup) {
+    (<any>Object).values(formGroup.controls).forEach(control => {
+      control.markAsTouched();
+
+      if (control.controls) {
+        this.markFormGroupTouched(control);
+      }
+    });
+  }
  
-  onSubmit()
+  onSubmit(form:any)
   {
-    console.log(this.registerForm);
-    this.submitted=true;
-    console.log(this.submitted);
+    if(!form.valid)
+    {
+      this.markFormGroupTouched(this.registerForm);
+      
+    }
+   else{
+    this.route.navigate(['/login']);
+   }
     
   }
+  // goToLogin(form:any)
+  // {
+  //   if(form.valid)
+  //   {
+  //     this.route.navigate(['/login']);
+  //   }
+  // }
 }
 

@@ -4,7 +4,7 @@
        <img src="../../assets/DEVICEMANAGER.svg" alt="Device Manager">
     </div>
 </div>
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
     <div class="container">
       <h1>Register</h1>
       <br><br>

@@ -1,0 +1,145 @@
+<section>
+    <header>
+        <img class="logo" src="../../../assets/DEVICEMANAGER.svg" alt="DEVICEMANAGER">
+        <div class="buttons">
+            <button class="users">Users</button>
+            <button class="devices">Devices</button>
+        </div>
+        <div class="userinfo">
+            <p class="username">Rishab Chakraborty</p>
+            <button class="logout">Logout</button>
+        </div>
+    </header>
+    <div class="box">
+        <div class="info">
+            <div class="top">
+                <h2>Devices</h2>
+                <button class="add-device" (click)="openNewForm()">Add +</button>
+            </div>
+            <p>Admin can view, add, edit, activate/deactivate or release a device.</p>
+        </div>
+        <br><br>
+        <div class="device-table">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Device ID</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Assigned To</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                
+                    <ng-container *ngFor="let row of tableData; let i = index">
+                        <tr>
+                            <th scope="row">{{row.name}}</th>
+                            <td>{{row.deviceid}}</td>
+                            <td>{{row.type}}</td>
+                            <td>{{row.assignedTo}}</td>
+                            <td>Available</td>
+                            <td>
+                                <i class="fa fa-eye action" aria-hidden="true" data-toggle="modal" data-target=".bd-example-modal-lg"></i>&nbsp;&nbsp;
+                                <i class="fa fa-plus-circle action" aria-hidden="true"></i>&nbsp;&nbsp;
+                                <i class="fa fa-pencil-square-o action" aria-hidden="true"></i>&nbsp;&nbsp;
+                                <i class="fa fa-times-circle action" aria-hidden="true"(click)="cutAssigned(i)"></i>&nbsp;&nbsp;
+                                <i class="fa fa-trash action" aria-hidden="true" (click)="deleteRow(i)"></i>&nbsp;&nbsp;
+                            </td>
+                        </tr>
+                      
+
+                        
+                    </ng-container>
+                    <!-- <ng-container *ngFor="let dtls of detailData; let i = index">
+                        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                              <div class="modal-content">
+                                <h2>{{dtls.name}}</h2>
+                                <h1>{{dtls.type}}</h1>
+                                <div class="eyeData">
+                                    <label>Device id</label>
+                                    {{dtls.deviceid}}
+                                    <label>OS</label>
+                                    {{dtls.os}}
+                                    <label>RAM</label>
+                                    {{dtls.ram}}
+                                    <label>Storage</label>
+                                    {{dtls.memory}}
+                                </div>
+                                
+                              </div>
+                            </div>
+                          </div>
+
+                    </ng-container> -->
+                </tbody>
+            </table>
+        </div>
+        <br><br>
+    </div>
+    <div class="model" id="add-new-data">
+        <div class="model-content">
+            <div class="full">
+                <div class="close" style="float: left;" (click)="close()">x</div>
+                <div class="form">
+                    <div>
+                        <h1>New Device</h1>
+                        <br><br>
+                        <label for="brand">Brand</label>
+                        <input #brand type="text" placeholder="Enter brand" name="brand" id="brand" required>
+
+                        <label for="name">Name</label> `
+                        <input #name type="text" placeholder="Enter name" name="name" id="name" required>
+
+                        <label for="device-id">Device ID</label>
+                        <input #deviceID type="text" placeholder="Enter device id" name="device-id" id="device-id" required>
+
+                        <p>Device type</p>
+                        <div class="checkbox">
+                            <div class="check1">
+                                <label>
+                            <input (click)="changeShow()" #check1 type="radio" name="device-type" id="device-type" value="computer" >
+                            computer</label>
+                            </div>
+                            
+                            <div class="check2">
+                                <label>
+                            <input (click)="changeShow()" #check1 type="radio" name="device-type" id="device-type" value="mobile">
+                            mobile</label>
+                            </div>
+                            <div class="check3">
+                                <label>
+                            <input (click)="changeShow()" #check1 type="radio" name="device-type" id="device-type" value="peripheral">
+                            peripheral</label>
+                            </div>
+                        </div>
+                        <br>
+                        <div *ngIf="show">
+                        <label for="OS">OS</label>
+                        <input #os type="text" placeholder="Enter OS" name="OS" id="OS">
+
+                        <label for="ram">Ram</label> `
+                        <input #ram type="text" placeholder="Enter Ram" name="ram" id="ram">
+
+                        <label for="memory">Memory</label>
+                        <input #memory type="text" placeholder="Enter Memory" name="memory" id="memory">
+
+                        <label for="imei">IMEI Number</label>
+                        <input #imei type="text" placeholder="Enter IMEI Number" name="imei" id="imei">
+
+
+                        </div>
+
+                        
+                        <button  type="submit" class="registerbtn" (click)="saveData(brand.value, name.value, deviceID.value, check1.value)">Register</button>
+                        <!-- <button *ngIf="check1" type="submit" class="registerbtn" (click)="saveData(brand.value, name.value, deviceID.value, check1.value,os.value,ram.value,memory.value,imei.value)">Register</button> -->
+                        <br>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
