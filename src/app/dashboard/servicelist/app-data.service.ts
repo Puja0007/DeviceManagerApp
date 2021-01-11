@@ -19,3 +19,4 @@ export class AppDataService {
     return JSON.parse(localStorage.getItem("data"));
   }
 }
+

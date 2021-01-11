@@ -1,0 +1,106 @@
+
+<section>
+    <header>
+        <img class="logo" src="../../../assets/DEVICEMANAGER.svg" alt="DEVICEMANAGER">
+        <div class="buttons">
+            <button class="users" routerLink="/dashboard/userlist">Users</button>
+            <button class="devices" routerLink="/dashboard/devicelist">Devices</button>
+        </div>
+        <div class="userinfo">
+            <p class="username">Rishab Chakraborty</p>
+            <button class="logout" (click)="logOut()">Logout</button>
+        </div>
+    </header>
+    <div class="box">
+        <div class="info">
+            <div class="top">
+                <h2>Users</h2>
+                <button class="add-device" (click)="openNewForm()">Add +</button>
+            </div>
+            <p>Admin can add, edit, activate or deactivate an user.</p>
+        </div>
+        <br><br>
+        <div class="device-table">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Employee ID</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Devices</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                
+                    <ng-container *ngFor="let row of tableData; let i = index">
+                        <tr>
+                            <!-- <th scope="row">{{row.name}}</th> -->
+                            <td>{{row.name}}</td>
+                            <td>{{row.empid}}</td>
+                            <td>{{row.email}}</td>
+                            <td>{{row.devices}}</td>
+                            <td>{{row.status}}</td>
+                            
+                            <td>
+                                <i class="fa fa-eye action" aria-hidden="true" style="color: rgb(27, 109, 141);"data-toggle="modal" data-target=".bd-example-modal-lg"></i>&nbsp;&nbsp;
+                                <i class="fa fa-pencil-square-o action" aria-hidden="true" style="color: rgb(27, 109, 141);"></i>&nbsp;&nbsp;
+                                <i class="fa fa-lock" aria-hidden="true" style="color: rgb(255, 136, 0);"></i>&nbsp;&nbsp;
+                                <i class="fa fa-times-circle action" aria-hidden="true" style="color: red;" (click)="setInactive(i)"></i>&nbsp;&nbsp;
+                                <i class="fa fa-check" aria-hidden="true" style="color: rgb(79, 192, 79);"(click)="setActive(i)"></i>&nbsp;&nbsp;
+                                <i class="fa fa-trash action" aria-hidden="true" (click)="deleteRow(i)"></i>&nbsp;&nbsp;
+                            </td>
+                        </tr>
+                      
+
+                        
+                    </ng-container>
+                    
+                </tbody>
+            </table>
+        </div>
+        <br><br>
+    </div>
+    <div class="model" id="add-new-data">
+        <div class="model-content">
+            <div class="full">
+                <div class="close" style="float: left;" (click)="close()">x</div>
+                <div class="form">
+                    <div>
+                        <h1>New User</h1>
+                        <br><br>
+                        <label for="fname">First Name</label>
+                        <input #fname type="text" placeholder="Enter Name" name="fname" id="fname">
+
+                        <label for="lname">Last Name</label>
+                        <input #lname type="text" placeholder="Enter Last Name" name="lname" id="lname">
+
+                        <label for="empid">Employee ID</label>
+                        <input #empid type="text" placeholder="Enter Employee id" name="empid" id="empid">
+                         
+                        <label for="email">Email</label>
+                        <input #email type="text" placeholder="Enter Email" name="email" id="email">
+
+                        
+    
+                        
+                        
+                        <button  type="submit" class="registerbtn" (click)="saveData(fname.value,lname.value,empid.value,email.value)">Add</button>
+                    
+                        <br>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    
+   
+                        
+</section>

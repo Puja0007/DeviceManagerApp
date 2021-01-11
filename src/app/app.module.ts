@@ -1,38 +1,42 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {ReactiveFormsModule} from '@angular/forms' 
+import {FormsModule, ReactiveFormsModule} from '@angular/forms' 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
-import { DevicesComponent } from './devices/devices.component';
+
 import { FeatherModule } from 'angular-feather';
-import { Camera, Heart, Github, User } from 'angular-feather/icons';
+import { Camera, Heart, Github, User,Cpu,Eye,Plus,X } from 'angular-feather/icons';
+import { AuthGuard } from './auth.guard';
+
+
 const icons = {
   Camera,
   Heart,
   Github,
-  User
+  User,
+  Cpu,
+  Eye,Plus,X
 };
 
 @NgModule({
   declarations: [
-    AppComponent,
-    RegisterComponent,
-    LoginComponent,
-    DevicesComponent,
+    AppComponent
+  
+    
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FeatherModule.pick(icons)
+    FeatherModule.pick(icons),
+    FormsModule
+    
   ],
   exports: [
     FeatherModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

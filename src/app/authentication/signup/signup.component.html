@@ -1,0 +1,51 @@
+<div class="container-fluid" id="background">
+  <div class="row">
+    <div id="cover" class="col-md-6">
+      <div style="padding-left:25px; padding-top: 25px;">
+         <img src="../../../assets/DEVICEMANAGER.svg" alt="Device Manager">
+      </div>
+  </div>
+  <form class="col-md-6" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="col-md-3" id="happy">
+        <h2>Register</h2>
+        <br>
+        <div class="form-group">
+          <label for="fname">First Name</label>
+          <input type="text" class="form-control" id="fname"  aria-describedby="fname" placeholder="Enter First name" formControlName="firstname">
+          <small class="text-danger" [class.d-none]="registerForm.get('firstname').valid || registerForm.get('firstname').untouched">First Name is required</small>
+        </div>
+        
+        <div class="form-group">
+          <label for="fname">Last Name</label>
+          <input type="text" class="form-control" id="lname"  aria-describedby="lname" placeholder="Enter Last name" formControlName="lastname">
+          <small class="text-danger" [class.d-none]="registerForm.get('lastname').valid || registerForm.get('lastname').untouched">Last Name is required</small>
+        </div>
+        
+        
+        <div class="form-group">
+          <label for="employeeID">Employee Id</label>
+          <input type="text" class="form-control" id="employeeID"  aria-describedby="employeeID" placeholder="Enter employee id" formControlName="employeeID">
+          <small class="text-danger" [class.d-none]="registerForm.get('employeeID').valid || registerForm.get('employeeID').untouched">Employee Id is required</small>
+        </div>
+         
+         <div class>
+          <label for="psw" class="form-label">Password</label>
+          <input type="password" class="form-control" placeholder="Enter Password" id="psw" formControlName="psw">
+          <small class="text-danger" [class.d-none]="registerForm.get('psw').valid || registerForm.get('psw').untouched">Password is required</small>
+        </div>
+        
+        <div class>
+          <label for="psw" class="form-label">Re-type Password</label>
+          <input type="password" class="form-control" id="psw" placeholder="Re-enter Password" formControlName="pswrepeat">
+          <small class="text-danger" [class.d-none]="registerForm.get('pswrepeat').valid || registerForm.get('pswrepeat').untouched">Confirm Password is required</small>
+        </div>
+         <br>
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
+        <p>Already have an account? <a routerLink="/signin">Sign in</a>.</p>
+      </div>
+    </form>
+  </div>
+
+
+  </div>
+    

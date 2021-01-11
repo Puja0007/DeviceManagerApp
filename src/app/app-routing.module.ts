@@ -1,26 +1,33 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DevicesComponent } from './devices/devices.component';
+import { AuthGuard } from './auth.guard';
+import { SigninComponent } from './authentication/signin/signin.component';
+import { SignupComponent } from './authentication/signup/signup.component';
+
+import { LoginGuard } from './login.guard';
 
 
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+
+import { RedirectGuard } from './redirect.guard';
+
 
 
 const routes: Routes = [
-  {path:'',redirectTo:'register', pathMatch: 'full' },
-  {
-    path:'login',
-    component:  LoginComponent
-  },
-  {
-    path: 'register',
-    component: RegisterComponent
-  },
-  {
-    path:'devices',
-    component:DevicesComponent
-  }
+ {
+   path:'',
+   redirectTo:'authentication',
+   pathMatch:'full'
+
+ },
+ 
+
+
+ 
+  
+  
+  { path: 'authentication', loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule) },
+  { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule) },
+  
 ];
 
 @NgModule({
