@@ -13,9 +13,10 @@ export class DevicelistComponent implements OnInit {
   tableData = [];
   show:boolean=false;
   eye:boolean=false;
-
+  num:number;
   
-  showData:{};
+  showData=[];
+  showSingleDetails=[];
   showModal = false;
   addDataModal = false;
 
@@ -35,11 +36,20 @@ export class DevicelistComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDataFromService();
+    
+    
   }
   getDataFromService(){
     this.tableData = this._addDataService.getData();
+    
+    // console.log(this.showData);
+    
   }
-
+getDetaisData()
+{
+  this.showData = this._addDataService.getData();
+  
+}
   openNewForm() : void
   {
     var ele:HTMLElement = document.getElementById("add-new-data") as HTMLElement;
@@ -61,7 +71,7 @@ export class DevicelistComponent implements OnInit {
 }
 cutAssigned(i)
 {
-  this.tableData[i].assignedTo='NA';
+  this.tableData[i].name='NA';
   localStorage.setItem('data', JSON.stringify(this.tableData)); 
 }
 changeShow()
@@ -73,6 +83,7 @@ changeShow()
 editModel(i){
   var ele:HTMLElement = document.getElementById("edit-data") as HTMLElement;
   ele.style.display = "block";
+  this.num=i;
   this.deviceData = new FormGroup({
     name : new FormControl(this.tableData[i].name),
     brand : new FormControl(this.tableData[i].brand),
@@ -92,19 +103,39 @@ closeEdit(){
   ele.style.display = "none";
 }
 
-  showDetails(i){
-  this.showData = this.tableData[i];
-  var ele:HTMLElement = document.getElementById("show-model-data") as HTMLElement;
-  ele.style.display = "block";
+  showDetails(i)
+  {
+   this.showData=[
+     {
+       device: this.tableData[i].device,
+       OS:this.tableData[i].OS,
+       memory:this.tableData[i].memory,
+       imei:this.tableData[i].imei,
+       ram:this.tableData[i].ram
+       
+
+     }
+   ]
 }
 
-closeShowModel(){
-  var ele:HTMLElement = document.getElementById("show-model-data") as HTMLElement;
-  ele.style.display = "none";
-}
+// closeShowModel(){
+//   var ele:HTMLElement = document.getElementById("show-model-data") as HTMLElement;
+//   ele.style.display = "none";
+// }
 
 editData(data){
-  this._addDataService.addData(data);
-  this.getDataFromService();
+  // this._addDataService.addData(data);
+  // this.getDataFromService();
+
+  this.deviceData.setValue(data);
+}
+logout(){
+  localStorage.removeItem("data");
+}
+onSubmit()
+{
+  this.tableData[this.num]=this.deviceData.value;
+  console.log(this.deviceData.value);
+  
 }
 }

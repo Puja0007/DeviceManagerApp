@@ -134,6 +134,7 @@ h .info .add-device:hover,
 
 /* model css */
 
+
 .model {
     display: none;
     position: fixed;
@@ -159,7 +160,7 @@ h .info .add-device:hover,
 
 /*edit css*/
 
-.edit-model {
+#edit-data {
     display: none;
     position: fixed;
     z-index: 1;

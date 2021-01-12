@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth.guard';
 import { SigninComponent } from './authentication/signin/signin.component';
 import { SignupComponent } from './authentication/signup/signup.component';
+import { DevicelistComponent } from './dashboard/devicelist/devicelist.component';
 
 import { LoginGuard } from './login.guard';
 
@@ -18,6 +19,11 @@ const routes: Routes = [
    redirectTo:'authentication',
    pathMatch:'full'
 
+ },
+ {
+   path:'**',
+   component:DevicelistComponent,
+   canActivate:[RedirectGuard]
  },
  
 

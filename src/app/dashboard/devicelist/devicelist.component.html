@@ -1,93 +1,48 @@
 <section>
     <nav class="navbar navbar-expand-md">
         <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-            <ul class="navbar-nav">
+            <!-- <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="d-flex w-50 order-0" href="#"><img src="../../assets/DEVICEMANAGER.svg" alt=""></a>
+                    
                 </li>
-            </ul>
+            </ul> -->
+            <div>
+                <img src="../../assets/DEVICEMANAGER.svg" alt="">
+            </div>
         </div>
         <div class="mx-auto order-0 d-flex justify-content-space-between">
-            <li class="navbar-brand mx-auto d-flex">
+            <div class="navbar-brand mx-auto d-flex" id="user">
                 <i-feather name="user" class="mr-2"></i-feather>
                 <span>Users</span>
-            </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            
             
             <!-- <a class="navbar-brand mx-auto" href="#">User</a> -->
             <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
                 <span class="navbar-toggler-icon"></span>
             </button> -->
-            <li class="navbar-brand mx-auto d-flex">
+            <div class="navbar-brand mx-auto d-flex">
                 <i-feather name="cpu" class="mr-2 text-primary"></i-feather> 
                 <span>Devices</span>
-            </li>
+            </div>
         </div>
         <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <span class="border border-dark" id="username"><i-feather name="user"></i-feather>Rishab Chakraborty</span>
+                <li class="nav-item mr-2">
+                    <span class="border border-dark" style="font-size: 15px;"><i-feather class="px-1" name="user"></i-feather>Rishab Chakraborty</span>
                     <!-- <a class="nav-link" href="#">Right</a> -->
                 </li>
                 <li class="nav-item">
-                    <i-feather name="log-out" class="border border-dark"></i-feather>
+                    <i-feather name="log-out" class="border border-dark" (click)="logout()"></i-feather>
                     <!-- <a class="nav-link" href="#">Link</a> -->
                 </li>
             </ul>
         </div>
     </nav>
-    <!-- <header>
-        <nav class="navbar navbar-expand-md navbar-dark">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-4">
-                    <div class="d-flex w-50 order-0">
-                        <img src="../../assets/DEVICEMANAGER.svg" alt="">
-                    </div>
-                </div>
-                       <div class="col-md-4">
-                        <ul class="navbar-nav justify-content-space-between align-items-center" style="font-size:20px;">
-                            
-                                <div class="col-md-6">
-                                    <li class="d-flex align-items-center justify-content-space-between mr-4">
-                                        <i-feather name="user" class="mr-2"></i-feather>
-                                        <span>Users</span>
-                                    </li>
-                                </div>
-                                <div class="col-md-6">
-                                    <li class="d-flex align-items-center justify-content-space-between mr-4">
-                                        <i-feather name="cpu" class="mr-2 text-primary"></i-feather> 
-                                        <span>Devices</span>
-                                    </li>
-                                </div>
-                            
-                            
-                            
-                        </ul>
-                       </div>
-                        
-                    <div class="col-md-4">
-                            <div style="margin-left: 420px;">
-                            <ul class="navbar-nav">
-                                <li class="nav">
-                                    
-                                    <span class="border border-dark" id="username"><i-feather name="user"></i-feather>Rishab Chakraborty</span>
-                                </li>
-                                <li class="nav-item">
-                                    <button class="btn"><i-feather name="log-out"></i-feather></button>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                </div>
-                
-            </div>
-            
-        </nav>
-    </header> -->
+    
 
 <div style="background-color:rgb(245, 243, 240)">
-    <div class="container-fluid" >
+    <div class="container" >
         <div class="row justify-content-center">
             <div class="col-12" style="margin-top:20px; background-color: white;">
                 <h3 style="display: inline;"><i-feather name="cpu" class="mr-2 text-primary"></i-feather>Devices</h3>
@@ -118,15 +73,15 @@
 
                         <ng-container *ngFor="let row of tableData; let i = index">
                             <tr>
-                                <td>{{row.name}}</td>
+                                <td>{{row.brand}}</td>
                                 <td>{{row.device}}</td>
                                 <td>{{row.type}}</td>
-                                <td>{{row.assignedTo}}</td>
+                                <td>{{row.name}}</td>
                                 <td>Available</td>
                                 <td>
-                                    <i class="fa fa-eye action text-primary"  aria-hidden="true" (click)="showDetails(i)"></i>&nbsp;&nbsp;
+                                    <i class="fa fa-eye action text-primary" data-toggle="modal" data-target="#myModal" aria-hidden="true" (click)="showDetails(i)"></i>&nbsp;&nbsp;
                                     <i class="fa fa-plus-circle action text-primary" aria-hidden="true"></i>&nbsp;&nbsp;
-                                    <i class="fa fa-pencil-square-o action text-warning" aria-hidden="true" (click)='editModel(i)'></i>&nbsp;&nbsp;
+                                    <i class="fa fa-pencil-square-o action text-warning" aria-hidden="true" (click)="editModel(i)"></i>&nbsp;&nbsp;
                                     <i class="fa fa-times-circle action text-danger" aria-hidden="true" (click)="cutAssigned(i)"></i>&nbsp;&nbsp;
                                     <i class="fa fa-trash action" aria-hidden="true" (click)="deleteRow(i)"></i>&nbsp;&nbsp;
                                 </td>
@@ -149,48 +104,48 @@
                     <div>
                         <h1>New Device</h1>
                         <br><br>
-                        <form #deviceData="ngForm">
+                        <form [formGroup]="deviceData" (ngSubmit)="onSubmit()">
                             <label for="brand">Brand</label>
-                            <input type="text" placeholder="Enter brand" formControlName="brand" id="brand" ngModel>
+                            <input type="text" placeholder="Enter brand" formControlName="brand" id="brand" #brand>
 
                             <label for="name">Name</label> `
-                            <input type="text" placeholder="Enter name" name="name" id="name" ngModel>
+                            <input type="text" placeholder="Enter name" formControlName="name" id="name" #name>
 
                             <label for="device-id">Device ID</label>
-                            <input type="text" placeholder="Enter device id" name="device" ngModel>
+                            <input type="text" placeholder="Enter device id" formControlName="device" #device>
 
                             <p>Device type</p>
                             <div class="checkbox">
                                 <div class="check1">
                                     <label>
-                            <input (click)="changeShow()" #check1 type="radio" name="type" id="device-type" value="computer" ngModel>
+                                  <input (click)="changeShow()" #check1 type="radio" formControlName="type" id="device-type" value="computer">
                             computer</label>
                                 </div>
 
                                 <div class="check2">
                                     <label>
-                            <input (click)="changeShow()" #check1 type="radio" name="type" id="device-type" value="mobile" ngModel>
+                            <input (click)="changeShow()" #check1 type="radio" formControlName="type" id="device-type" value="mobile">
                             mobile</label>
                                 </div>
                                 <div class="check3">
                                     <label>
-                            <input (click)="changeShow()" #check1 type="radio" name="type" id="device-type" value="peripheral" ngModel>
-                            peripheral</label>
+                            <input (click)="changeShow()" #check1 type="radio" formControlName="type" id="device-type" value="peripheral">
+                                peripheral</label>
                                 </div>
                             </div>
                             <br>
                             <div *ngIf="show">
                                 <label for="OS">OS</label>
-                                <input #os type="text" ngModel placeholder="Enter OS" name="OS" id="OS">
+                                <input #os type="text" placeholder="Enter OS" formControlName="OS" id="OS">
 
                                 <label for="ram">Ram</label> `
-                                <input #ram type="text" placeholder="Enter Ram" ngModel name="ram" id="ram">
+                                <input #ram type="text" placeholder="Enter Ram" formControlName="ram" id="ram">
 
                                 <label for="memory">Memory</label>
-                                <input #memory type="text" placeholder="Enter Memory" ngModel name="memory" id="memory">
+                                <input #memory type="text" placeholder="Enter Memory" formControlName="memory" id="memory">
 
                                 <label for="imei">IMEI Number</label>
-                                <input #imei type="text" placeholder="Enter IMEI Number" ngModel name="imei" id="imei">
+                                <input #imei type="text" placeholder="Enter IMEI Number" formControlName="imei" id="imei">
 
                             </div>
                             <button type="submit" class="registerbtn" (click)="saveData(deviceData.value)">Register</button>
@@ -212,51 +167,51 @@
                     <div>
                         <h1>Edit Device</h1>
                         <br><br>
-                        <form #editDeviceData="ngForm">
+                        <form [formGroup]="deviceData" (ngSubmit)="onSubmit()">
                             <label for="brand">Brand</label>
-                            <input type="text" placeholder="Enter brand" name="brand" id="brand" ngModel value=tableData required>
+                            <input type="text" placeholder="Enter brand" formControlName="brand" id="brand">
 
                             <label for="name">Name</label> `
-                            <input type="text" placeholder="Enter name" name="name" id="name" ngModel required>
+                            <input type="text" placeholder="Enter name" formControlName="name" id="name">
 
                             <label for="device-id">Device ID</label>
-                            <input type="text" placeholder="Enter device id" name="device" ngModel required>
+                            <input type="text" placeholder="Enter device id" formControlName="device">
 
                             <p>Device type</p>
                             <div class="checkbox">
                                 <div class="check1">
                                     <label>
-                            <input (click)="changeShow()" #check1 type="radio" name="type" id="device-type" value="computer" ngModel>
+                            <input #check1 type="radio" id="device-type" formControlName="type" value="computer">
                             computer</label>
                                 </div>
 
                                 <div class="check2">
                                     <label>
-                            <input (click)="changeShow()" #check1 type="radio" name="type" id="device-type" value="mobile" ngModel>
+                            <input #check1 type="radio" id="device-type" formControlName="type" value="mobile">
                             mobile</label>
                                 </div>
                                 <div class="check3">
                                     <label>
-                            <input (click)="changeShow()" #check1 type="radio" name="type" id="device-type" value="peripheral" ngModel>
+                            <input #check1 type="radio" id="device-type" formControlName="type" value="peripheral">
                             peripheral</label>
                                 </div>
                             </div>
                             <br>
-                            <div *ngIf="show">
+                            <div>
                                 <label for="OS">OS</label>
-                                <input #os type="text" ngModel placeholder="Enter OS" name="OS" id="OS">
+                                <input #os type="text" placeholder="Enter OS" formControlName="OS" id="OS">
 
                                 <label for="ram">Ram</label> `
-                                <input #ram type="text" placeholder="Enter Ram" ngModel name="ram" id="ram">
+                                <input #ram type="text" placeholder="Enter Ram" formControlName="ram" id="ram">
 
                                 <label for="memory">Memory</label>
-                                <input #memory type="text" placeholder="Enter Memory" ngModel name="memory" id="memory">
+                                <input #memory type="text" placeholder="Enter Memory" formControlName="memory" id="memory">
 
                                 <label for="imei">IMEI Number</label>
-                                <input #imei type="text" placeholder="Enter IMEI Number" ngModel name="imei" id="imei">
+                                <input #imei type="text" placeholder="Enter IMEI Number" formControlName="imei" id="imei">
 
                             </div>
-                            <button type="submit" class="registerbtn" (click)="editData(deviceData.value)">Edit</button>
+                            <button type="submit" class="registerbtn">Edit</button>
                             <br>
                         </form>
                     </div>
@@ -264,7 +219,72 @@
             </div>
         </div>
     </div>
-
+ <!-- new modal -->
+ 
+ 
+  
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        
+      <!-- Modal content-->
+      <div class="modal-content" style="padding: 25px;">
+        
+    <div class="container">
+            
+            <!-- <button class="close float-right" (click)="closeEdit()">x</button> -->
+          <!-- <button type="button" class="close float-right" data-dismiss="modal">&times;</button> -->
+          <h4 class="modal-title">Dell Inspiron</h4>
+          <p>Computer</p>
+        
+        </div>
+        <div class="modal-body">
+          <table class="table table-borderless">
+            <thead>
+              <tr>
+                
+                <th scope="col">Device Id</th>
+                <th scope="col">Operating System</th>
+                <th scope="col">CPU</th>
+              </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let rowd of showData; let i = index">
+              <tr>
+                <td>{{rowd.device}}</td>
+                <td>{{rowd.OS}}</td>
+                <td>{{rowd.memory}}</td>
+                
+              </tr>
+              </ng-container>
+            </tbody>
+            <thead>
+                <tr>
+                  
+                  <th scope="col">GPU</th>
+                  <th scope="col">RAM</th>
+                  <th scope="col">Storage</th>
+                </tr>
+              </thead>
+        
+              <tbody>
+                <ng-container *ngFor="let rowd of showData; let i = index">
+                <tr>
+                  <td>{{rowd.imei}}</td>
+                  <td>{{rowd.ram}}</td>
+                  <td>{{rowd.memory}}</td>
+                  
+                </tr>
+                </ng-container>
+              </tbody>
+          </table>
+        </div>
+        <div>
+            <button type="button" class="btn btn-primary float-right" data-dismiss="modal">Close</button>
+        </div>  
+    </div>
+  
+    </div>
+  </div>
 
 
 </section>

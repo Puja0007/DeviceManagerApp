@@ -18,5 +18,9 @@ export class AppDataService {
   getData(){
     return JSON.parse(localStorage.getItem("data"));
   }
+  editData(newdata:[])
+    {
+      
+    }
 }
 
