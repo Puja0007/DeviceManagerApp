@@ -104,7 +104,7 @@ setActive(i:number)
  this.isValid=false;
  
 }
-setInactive(i:number)
+setInactive(i)
 {
  this.tableData[i].status='Inactive';
  localStorage.setItem('dataUser', JSON.stringify(this.tableData)); 
