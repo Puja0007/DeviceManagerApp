@@ -20,11 +20,11 @@ const routes: Routes = [
    pathMatch:'full'
 
  },
- {
-   path:'**',
-   component:DevicelistComponent,
-   canActivate:[RedirectGuard]
- },
+//  {
+//    path:'**',
+//    component:DevicelistComponent,
+//    canActivate:[RedirectGuard]
+//  },
  
 
 

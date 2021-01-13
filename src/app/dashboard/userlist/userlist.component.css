@@ -1,138 +1,4 @@
-* {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-}
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 20px;
-}
-
-.logo {
-    width: 200px;
-}
-
-.users {
-    margin-left: 30px;
-    border: none;
-    background-color: white;
-    display: inline-block;
-    font-size: 30px;
-    padding-left: 30px;
-    padding-right: 20px;
-    font-size: 30px;
-    font-style: normal;
-    font-weight: normal;
-}
-
-.users:focus {
-    background-color: white;
-    color: royalblue;
-    border-bottom: 5px solid royalblue;
-    outline: none;
-}
-
-.devices {
-    margin-left: 30px;
-    border: none;
-    background-color: white;
-    display: inline-block;
-    font-size: 30px;
-    padding-left: 20px;
-    padding-right: 30px;
-    font-size: 30px;
-    font-style: normal;
-    font-weight: normal;
-}
-
-.devices:focus {
-    background-color: white;
-    color: royalblue;
-    border-bottom: 5px solid royalblue;
-    outline: none;
-}
-
-.username {
-    size: 20px;
-    margin-right: 50px;
-    padding-right: 15px;
-    padding-left: 15px;
-    display: inline;
-    font-size: 20px;
-    text-align: center;
-}
-
-.logout {
-    height: 30px;
-    margin-left: 30px;
-    margin-right: 75px;
-    font-size: 22px;
-    outline: none;
-}
-
-.logout:focus {
-    outline: none;
-}
-
-.box {
-    width: 100%;
-    height: 100%;
-    justify-content: space-between;
-    overflow: scroll;
-    overflow-x: hidden;
-    padding-top: 40px;
-    background-color: rgb(222, 226, 230);
-}
-
-.info {
-    width: 80%;
-    margin: auto;
-    padding: 20px;
-    background-color: white;
-}
-
-.top {
-    display: flex;
-    justify-content: space-between;
-}
-
-.info h2 {
-    display: inline;
-}
-
-.info .add-device {
-    height: 50px;
-    width: 100px;
-    color: white;
-    font-size: 20px;
-    background-color: dodgerblue;
-    border: none;
-    border-radius: 7px;
-    outline: none;
-}
-
-h .info .add-device:hover,
-.info .add-device:focus {
-    background-color: rgba(30, 144, 255, .8);
-}
-
-.device-table {
-    background-color: white;
-    margin-top: 20px;
-    width: 80%;
-    margin: auto;
-    padding: 20px;
-}
-
-/* .action {
-    list-style: none;
-    color: red;
-} */
 /* model css */
-
 .model {
     display: none;
     position: fixed;
@@ -141,30 +7,54 @@ h .info .add-device:hover,
     left: 0;
     height: 100%;
     width: 100%;
-    overflow:auto;
+    overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
 }
-
+input[type=text], input[type=password],input[type=email],label{
+    width: 200px;
+    margin: 5px 0 10px 0;
+    font-size: 12px;
+    
+    }
 .model-content {
     display: flex;
     float: right;
     justify-content: center;
     background-color: white;
-    
     top: 0;
     width: 50%;
     height: fit-content;
 }
-.eyeData{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+
+
+/*edit css*/
+
+#edit-data{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
 }
+
+.edit-model-content {
+    display: flex;
+    float: right;
+    justify-content: center;
+    background-color: white;
+    top: 0;
+    width: 50%;
+    height: fit-content;
+}
+
 
 .full {
     width: 100%;
     height: 100%;
-    /* display: flexbox; */
 }
 
 .close {
@@ -172,7 +62,6 @@ h .info .add-device:hover,
     margin-left: 30px;
     font-size: 40px;
     color: black;
-    /* display: flex; */
     float: left;
 }
 
@@ -190,77 +79,24 @@ h .info .add-device:hover,
     display: flexbox;
     font-size: 20px;
 }
-
 .check1 {
     display: block;
     float: left;
     margin-right: 100px;
 }
-/* .check2 {
-    display: block;
-    float: right;
+input[type=text], input[type=password],input[type=email],label{
+    width: 200px;
+    margin: 5px 0 10px 0;
+    font-size: 12px;
 }
-
-.check3 {
-    display: inline-block;
-    float: left;
-} */
-/* Full-width input fields */
-
-input[type=text],
-input[type=password] {
-    width: 300px;
-    padding: 15px;
-    margin: 5px 0 22px 0;
-    display: block;
-    outline: none;
-    outline-style: solid #eeeeee 1px;
-    border-top: solid #eeeeee 1px;
-    border-left: solid #eeeeee 1px;
-    border-right: solid #eeeeee 1px;
-    border-bottom: solid #eeeeee 1px;
-    border-radius: 5px;
-    box-sizing: border-box;
-    background: transparent;
+button[type=submit]{
+        width:200px;
+        height: 30px;
+        font-size: 12px;
 }
-
-input[type=text]:focus,
-input[type=password]:focus {
-    outline: none;
-    box-shadow: 0 0 8px 0 dodgerblue;
-}
-/* Overwrite default styles of hr */
-
-hr {
-    border: 1px solid #f1f1f1;
-    margin-bottom: 25px;
-}
-/* Set a style for the submit/register button */
-
-.registerbtn {
-    background-color: #6fa9d8;
-    color: white;
-    padding: 16px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 300px;
-    opacity: 0.9;
-}
-
-.registerbtn:hover {
-    opacity: 1;
-}
-/* Add a blue text color to links */
-
 a {
     color: dodgerblue;
     float: right;
 }
-/* Set a grey background color and center the text of the "sign in" section */
 
-.signin {
-    background-color: #f1f1f1;
-    text-align: center;
-}
-/* Add padding to containers */
+

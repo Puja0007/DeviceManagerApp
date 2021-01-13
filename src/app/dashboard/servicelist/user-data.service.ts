@@ -18,5 +18,8 @@ export class UserDataService {
   getData(){
     return JSON.parse(localStorage.getItem("dataUser"));
   }
-  
+  editData(newdata)
+    {
+      localStorage.setItem('dataUser',JSON.stringify(newdata));
+    }
 }

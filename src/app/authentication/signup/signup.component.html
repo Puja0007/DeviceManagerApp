@@ -1,13 +1,13 @@
 <div class="container-fluid" id="background">
   <div class="row">
     <div id="cover" class="col-md-6">
-      <div style="padding-left:25px; padding-top: 25px;">
+      <div style="padding-left: 25px; padding-top: 25px;">
          <img src="../../../assets/DEVICEMANAGER.svg" alt="Device Manager">
       </div>
   </div>
   <form class="col-md-6" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <div class="col-md-3" id="happy">
-        <h2>Register</h2>
+        <h2 style="font-size: 20px; font-weight: bold;">Register</h2>
         <br>
         <div class="form-group">
           <label for="fname">First Name</label>
@@ -41,7 +41,7 @@
         </div>
          <br>
         <button type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
-        <p>Already have an account? <a routerLink="/signin">Sign in</a>.</p>
+        <p style="font-size: 13px;">Already have an account? <a routerLink="/signin">Sign in</a>.</p>
       </div>
     </form>
   </div>

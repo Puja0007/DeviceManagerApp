@@ -8,6 +8,7 @@ import { DevicelistComponent } from './devicelist/devicelist.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FeatherModule } from 'angular-feather';
 import { Camera, Heart, Github, User,Cpu,Eye,Plus,X,LogOut} from 'angular-feather/icons';
+import { HeaderComponent } from '../header/header.component';
 
 const icons = {
   Camera,
@@ -20,7 +21,7 @@ const icons = {
 
 
 @NgModule({
-  declarations: [DashboardComponent, UserlistComponent, DevicelistComponent],
+  declarations: [DashboardComponent, UserlistComponent, DevicelistComponent,HeaderComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,

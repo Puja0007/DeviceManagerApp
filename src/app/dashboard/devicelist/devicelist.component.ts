@@ -111,8 +111,9 @@ closeEdit(){
        OS:this.tableData[i].OS,
        memory:this.tableData[i].memory,
        imei:this.tableData[i].imei,
-       ram:this.tableData[i].ram
-       
+       ram:this.tableData[i].ram,
+       brand:this.tableData[i].brand,
+       type:this.tableData[i].type
 
      }
    ]
@@ -127,14 +128,13 @@ editData(data){
   // this._addDataService.addData(data);
   // this.getDataFromService();
 
-  this.deviceData.setValue(data);
+  // this.deviceData.setValue(data);
 }
-logout(){
-  localStorage.removeItem("data");
-}
+
 onSubmit()
 {
   this.tableData[this.num]=this.deviceData.value;
+  this._addDataService.editData(this.tableData);
   console.log(this.deviceData.value);
   
 }

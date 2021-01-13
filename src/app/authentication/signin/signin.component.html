@@ -7,7 +7,7 @@
   </div>
   <form class="col-md-6" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="col-md-3" id="happy">
-        <h2>Register</h2>
+        <h2 style="font-size: 20px; font-weight: bold;">Login</h2>
         <br>
         <div class="form-group">
           <label for="email">Email</label>
@@ -23,6 +23,8 @@
         
          <br>
         <button type="submit" class="btn btn-primary btn-lg btn-block">Login</button>
+        
+        <p style="font-size: 13px;">Don't have an account? <a routerLink="/authentication/signup">Register here.</a>.</p>
       </div>
     </form>
   </div>
