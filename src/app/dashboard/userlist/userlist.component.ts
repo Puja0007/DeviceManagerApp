@@ -10,12 +10,13 @@ import { UserDataService } from '../servicelist/user-data.service';
 })
 export class UserlistComponent implements OnInit {
 
+  user:string;
   tableData=[];
   showData=[];
   statusCol:boolean=false;
   addDataModal = false;
-  num:number;
-  isValid:boolean=true;
+  num:number;  
+  isValid = new Array(this.tableData.length).fill(false);
   deviceData = new FormGroup({
     fname : new FormControl(''),
     lname : new FormControl(''),
@@ -40,6 +41,7 @@ export class UserlistComponent implements OnInit {
  }
  getDataFromService(){
    this.tableData = this._addDataService.getData();
+  
  }
  saveData(fname:string,lname:string,email:string, empid:string){
    this._addDataService.addData(
@@ -71,24 +73,43 @@ export class UserlistComponent implements OnInit {
 }
 
 editModel(i){
+  console.log('editmodal running')
   var ele:HTMLElement = document.getElementById("edit-data") as HTMLElement;
   ele.style.display = "block";
+  console.log(ele)
+  console.log('editmodal after block');
   this.num=i;
   this.deviceData = new FormGroup({
-    fname : new FormControl(this.tableData[i].fname),
-    lname : new FormControl(this.tableData[i].lname),
-    email:  new FormControl(this.tableData[i].email),
-    empid: new FormControl(this.tableData[i].empid)
+    fname: new FormControl(this.tableData[i].fname),
+    lname: new FormControl(this.tableData[i].lname),
+    name: new FormControl(this.tableData[i].fname+this.tableData[i].lname),
+    email: new FormControl(this.tableData[i].email),
+    empid: new FormControl(this.tableData[i].empid),
+    devices: new FormControl('1'),
+    status:new FormControl('Active')
   });
-
-  // this.editDeviceData
+  console.log(this.deviceData.value);
+  
 }
 onSubmit()
 {
-  this.tableData[this.num]=this.deviceData.value;
+ this.tableData[this.num]=this.deviceData.value;
   this._addDataService.editData(this.tableData);
+  
   console.log(this.deviceData.value);
+
 }
+// onEdit()
+// {
+//   this.tableData[this.num].name=fname+lname;
+//   this.tableData[this.num].email=email;
+//   this.tableData[this.num].empid=empid;
+//   this.tableData[this.num].devices="1";
+//   this.tableData[this.num].status="Active";
+//   this._addDataService.editData(this.tableData);
+  
+
+// }
 closeEdit(){
   var ele:HTMLElement = document.getElementById("edit-data") as HTMLElement;
   ele.style.display = "none";
@@ -101,15 +122,28 @@ setActive(i:number)
 {
  this.tableData[i].status='Active';
  localStorage.setItem('dataUser', JSON.stringify(this.tableData)); 
- this.isValid=false;
+ this.isValid[i]=false;
  
 }
 setInactive(i)
 {
  this.tableData[i].status='Inactive';
  localStorage.setItem('dataUser', JSON.stringify(this.tableData)); 
- this.isValid=true;
+ this.isValid[i]=true;
 }
 
+changePasswordModal(i){
+  console.log('inside change')
+  var ele:HTMLElement = document.getElementById("change-password") as HTMLElement;
+
+  ele.style.display = "block";
+  this.user = this.tableData[i].fname;
+}
+
+closeChangepPassword(){
+
+  var ele:HTMLElement = document.getElementById("change-password") as HTMLElement;
+  ele.style.display = "none";
+}
 
 }

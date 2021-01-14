@@ -45,7 +45,7 @@ export class SignupComponent implements OnInit {
       
     }
    else{
-    this.route.navigate(['/signin']);
+    this.route.navigate(['/authentication/signin']);
      console.log(this.registerForm);
   
    }
