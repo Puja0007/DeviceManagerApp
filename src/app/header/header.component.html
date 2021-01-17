@@ -6,10 +6,11 @@
         </div>
     </div>
     <div class="mx-auto order-0 d-flex justify-content-space-between">
-        <div class="navbar-brand mx-auto d-flex" id="user">
+        <div class="navbar-brand mx-auto d-flex" id="user" style="padding-right: 100px;">
             <i-feather name="user" class="mr-2"></i-feather>
             <span routerLink="/dashboard/userlist" routerLinkActive="active">Users</span>
-        </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+
         
         <div class="navbar-brand mx-auto d-flex">
             <i-feather name="cpu" class="mr-2 text-primary"></i-feather> 
@@ -18,14 +19,15 @@
     </div>
     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2 d-flex align-items-center justify-content-space-between">
         <ul class="navbar-nav ml-auto x">
-            <li class="nav-item mr-2">
-                <span class="border border-dark py-1 px-1" style="font-size: 12px;"><i-feather class="px-1 " name="user"></i-feather>Rishab Chakraborty</span>
+            <li class="nav-item mr-2 border border-dark text-center">
+                <span class="py-1 px-1" style="font-size: 12px;"><i-feather class="px-1" name="user"></i-feather>Rishab Chakraborty</span>
                 
             </li>
-            <li class="nav-item mr-2" (click)="logout()" routerLink="/authentication/signin">
-                <i-feather name="log-out" class="border border-dark px-1"></i-feather>
+            <li class="nav-item mr-2 text-center border border-dark"  (click)="logout()" routerLink="/authentication/signin">
+                <i-feather name="log-out" class="px-1"></i-feather>
                 
             </li>
         </ul>
     </div>
 </nav>
+s
