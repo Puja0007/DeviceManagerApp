@@ -1,62 +1,62 @@
 <section>
     <app-header></app-header>
-    
-<div style="background-color:rgb(245, 243, 240)">
     <div style="background-color:rgb(245, 243, 240)">
-    <div class="container" >
-        <div class="row justify-content-center">
-            <div class="col-12" style="margin-top:20px; background-color: white;">
-                <h3 style="display: inline;"><i-feather name="cpu" class="mr-2 text-primary"></i-feather>Devices</h3>
-                <button style="float: right; margin-top:10px;" (click)="openNewForm()" class="btn btn-primary" data-bs-toggle="modal" (click)="addDataModal= true" data-bs-target="#add-device">ADD <i-feather name="plus"></i-feather></button>
-                <br><br>
-                <p>Admin can view, add, edit, activate/deactivate or release a device.</p>
+        <div class="container" >
+            <div class="row justify-content-center">
+                <div class="col-12" style="margin-top:20px; background-color: white;">
+                    <h3 style="display: inline;"><i-feather name="cpu" class="mr-2 text-primary"></i-feather>Devices</h3>
+                    <button style="float: right; margin-top:10px;" (click)="openNewForm()" class="btn btn-primary" data-bs-toggle="modal" (click)="addDataModal= true" data-bs-target="#add-device">ADD <i-feather name="plus"></i-feather></button>
+                    <br><br>
+                    <p>Admin can view, add, edit, activate/deactivate or release a device.</p>
+                </div>
             </div>
         </div>
-    </div>
-    <br><br>
-
- 
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <table class="table table-hover">
-                    <thead class="table-secondary">
-                        <tr>
-                            <th scope="col">Name</th>
-                            <th scope="col">Device ID</th>
-                            <th scope="col">Type</th>
-                            <th scope="col">Assigned To</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white">
-
-                        <ng-container *ngFor="let row of tableData; let i = index">
+        <br><br>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <table class="table table-hover">
+                        <thead class="table-secondary">
                             <tr>
-                                <td>{{row.brand}}</td>
-                                <td>{{row.device}}</td>
-                                <td>{{row.type}}</td>
-                                <td>{{row.name}}</td>
-                                <td>Available</td>
-                                <td>
-                                    <i class="fa fa-eye action text-primary" data-toggle="modal" data-target="#myModal" aria-hidden="true" (click)="showDetails(i)"></i>&nbsp;&nbsp;
-                                    <i class="fa fa-plus-circle action text-primary" aria-hidden="true"></i>&nbsp;&nbsp;
-                                    <i class="fa fa-pencil-square-o action text-warning" aria-hidden="true" (click)="editModel(i)"></i>&nbsp;&nbsp;
-                                    <i class="fa fa-times-circle action text-danger" aria-hidden="true" (click)="cutAssigned(i)"></i>&nbsp;&nbsp;
-                                    <i class="fa fa-trash action" aria-hidden="true" (click)="deleteRow(i)"></i>&nbsp;&nbsp;
-                                </td>
+                                <th scope="col">Name</th>
+                                <th scope="col">Device ID</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Assigned To</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Actions</th>
                             </tr>
-                        </ng-container>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody class="bg-white">
+    
+                            <ng-container *ngFor="let row of tableData; let i = index">
+                                <tr>
+                                    <td>{{row.brand}}</td> 
+                                    <td>{{row.device}}</td>
+                                    <td>{{row.type}}</td>
+                                    <td>{{row.name !== 'undefind' ? row.name : 'NA'}}</td>
+                                    <td>Available</td>
+                                    <td>
+                                        <i class="fa fa-eye action text-primary" data-toggle="modal" rel="tooltip" title="Details" data-target="#myModal" aria-hidden="true" (click)="showDetails(i)"></i>&nbsp;&nbsp;
+                                        <i class="fa fa-plus-circle action text-primary" rel="tooltip" title="Assign Device" aria-hidden="true"></i>&nbsp;&nbsp;
+                                        <i class="fa fa-times-circle action text-danger" *ngIf="isValid[i];else other" rel="tooltip" title="Not Assigned" aria-hidden="true" (click)="setActive(i)"></i>&nbsp;&nbsp;
+                                            <ng-template #other>
+                                                <i class="fa fa-check text-success" rel="tooltip" title="Assigned" aria-hidden="true" (click)="setInactive(i)"></i>&nbsp;&nbsp;
+                                            </ng-template>
+                                        <i class="fa fa-pencil-square-o action text-warning" aria-hidden="true" rel="tooltip" title="Edit" (click)="editModel(i)"></i>&nbsp;&nbsp;
+                                              
+            
+                                        <i class="fa fa-trash action" aria-hidden="true" rel="tooltip" title="Delete" (click)="deleteRow(i)"></i>&nbsp;&nbsp;
+                                    </td>
+                                </tr>
+                            </ng-container>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
-
-   </div>
-</div>
-
+    
+       
+    </div> 
     
     <!-- Modal -->
     <div class="model" id="add-new-data">
@@ -120,8 +120,7 @@
         </div>
     </div>
 
-
-
+    <!-- edit modal -->
     <div class="edit-model" id="edit-data">
         <div class="edit-model-content">
             <div class="full">
@@ -182,79 +181,71 @@
             </div>
         </div>
     </div>
- <!-- new modal -->
- 
- 
-  
-  <div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        
-      <!-- Modal content-->
-      <div class="modal-content" style="padding: 25px;">
-        
-        <div class="container">
+
+    <!-- show details modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
             
-            <!-- <button class="close float-right" (click)="closeEdit()">x</button> -->
-         
-            <!-- <button type="button" class="close float-right" data-dismiss="modal">&times;</button> -->
-            <ng-container *ngFor="let rowd of showData; let i = index">
-                <h4 class="modal-title">{{rowd.brand}}</h4>
-                <p>{{rowd.type}}</p>
-            </ng-container>
-          
-        
-        </div>
-        <div class="modal-body">
-          <table class="table table-borderless">
-            <thead>
-              <tr>
+          <!-- Modal content-->
+          <div class="modal-content" style="padding: 25px;">
+            
+            <div class="container">
                 
-                <th scope="col">Device Id</th>
-                <th scope="col">Operating System</th>
-                <th scope="col">CPU</th>
-              </tr>
-            </thead>
-            <tbody>
-                <ng-container *ngFor="let rowd of showData; let i = index">
-              <tr>
-                <td>{{rowd.device}}</td>
-                <td>{{rowd.OS}}</td>
-                <td>{{rowd.memory}}</td>
                 
-              </tr>
-              </ng-container>
-            </tbody>
-            <thead>
-                <tr>
-                  
-                  <th scope="col">GPU</th>
-                  <th scope="col">RAM</th>
-                  <th scope="col">Storage</th>
-                </tr>
-              </thead>
-        
-              <tbody>
                 <ng-container *ngFor="let rowd of showData; let i = index">
-                <tr>
-                  <td>{{rowd.imei}}</td>
-                  <td>{{rowd.ram}}</td>
-                  <td>{{rowd.memory}}</td>
-                  
-                </tr>
+                    <h4 class="modal-title">{{rowd.brand}}</h4>
+                    <p>{{rowd.type}}</p>
                 </ng-container>
-              </tbody>
-          </table>
+              
+            
+            </div>
+            <div class="modal-body">
+              <table class="table table-borderless">
+                <thead>
+                  <tr>
+                    
+                    <th scope="col">Device Id</th>
+                    <th scope="col">Operating System</th>
+                    <th scope="col">CPU</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let rowd of showData; let i = index">
+                  <tr>
+                    <td>{{rowd.device}}</td>
+                    <td>{{rowd.OS}}</td>
+                    <td>{{rowd.memory}}</td>
+                    
+                  </tr>
+                  </ng-container>
+                </tbody>
+                <thead>
+                    <tr>
+                      
+                      <th scope="col">GPU</th>
+                      <th scope="col">RAM</th>
+                      <th scope="col">Storage</th>
+                    </tr>
+                  </thead>
+            
+                  <tbody>
+                    <ng-container *ngFor="let rowd of showData; let i = index">
+                    <tr>
+                      <td>{{rowd.imei}}</td>
+                      <td>{{rowd.ram}}</td>
+                      <td>{{rowd.memory}}</td>
+                      
+                    </tr>
+                    </ng-container>
+                  </tbody>
+              </table>
+            </div>
+            <div>
+                <button type="button" class="btn btn-primary float-right" data-dismiss="modal">Close</button>
+            </div>  
         </div>
-        <div>
-            <button type="button" class="btn btn-primary float-right" data-dismiss="modal">Close</button>
-        </div>  
-    </div>
-  
-    </div>
-  </div>
-
-
+      
+        </div>
+      </div>
+    
 </section>
-
-
-

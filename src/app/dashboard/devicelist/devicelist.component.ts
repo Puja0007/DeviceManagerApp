@@ -9,15 +9,15 @@ import { AppDataService } from '../servicelist/app-data.service';
   styleUrls: ['./devicelist.component.css']
 })
 export class DevicelistComponent implements OnInit {
-  closeResult: string;
+  // closeResult: string;
   tableData = [];
   show:boolean=false;
-  eye:boolean=false;
+  // eye:boolean=false;
   num:number;
   
   showData=[];
-  showSingleDetails=[];
-  showModal = false;
+  // showSingleDetails=[];
+  // showModal = false;
   addDataModal = false;
 
   // deviceData = 
@@ -54,6 +54,8 @@ getDetaisData()
   {
     var ele:HTMLElement = document.getElementById("add-new-data") as HTMLElement;
     ele.style.display = "block";
+    this.addDataModal=true;
+    this.deviceData.reset();
   }
 
   close(){
@@ -131,11 +133,42 @@ editData(data){
   // this.deviceData.setValue(data);
 }
 
-onSubmit()
-{
-  this.tableData[this.num]=this.deviceData.value;
-  this._addDataService.editData(this.tableData);
-  console.log(this.deviceData.value);
+// onSubmit()
+// {
+//   this.tableData[this.num]=this.deviceData.value;
+//   this._addDataService.editData(this.tableData);
+//   console.log(this.deviceData.value);
   
-}
+// }
+
+onSubmit(form:any)
+  {
+    // const FORM_VAL = form.value;
+    // const DATA ={
+    //    "fname":FORM_VAL.fname,
+    //    "lname":FORM_VAL.lname,
+    //    "name" : FORM_VAL.fname+FORM_VAL.lname,
+    //    "email" :FORM_VAL.email,
+    //    "empid": FORM_VAL.empid,
+    //    "devices":  1,
+    //    "status" : "Active" 
+    // }
+    if(this.addDataModal)
+    {
+      this._addDataService.addData(form);
+      this.getDataFromService();
+      var ele:HTMLElement = document.getElementById("add-new-data") as HTMLElement;
+    ele.style.display = "none";
+    this.addDataModal=false;
+      
+    }
+    else{
+      this.tableData[this.num]=this.deviceData.value;
+      this._addDataService.editData(this.tableData);
+      var ele:HTMLElement = document.getElementById("edit-data") as HTMLElement;
+    ele.style.display = "none";
+    }
+    
+    
+  }
 }

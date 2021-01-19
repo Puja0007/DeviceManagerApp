@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, FormGroupDirective } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserDataService } from '../servicelist/user-data.service';
 
@@ -42,6 +42,7 @@ export class UserlistComponent implements OnInit {
  getDataFromService(){
    this.tableData = this._addDataService.getData();
   
+  
  }
  saveData(fname:string,lname:string,email:string, empid:string){
    this._addDataService.addData(
@@ -57,6 +58,7 @@ export class UserlistComponent implements OnInit {
      }
    );
    this.getDataFromService();
+  
  }
  showDetails(i)
   {
@@ -91,13 +93,16 @@ editModel(i){
   console.log(this.deviceData.value);
   
 }
-onSubmit()
+onSubmit(myForm)
 {
  this.tableData[this.num]=this.deviceData.value;
   this._addDataService.editData(this.tableData);
   
   console.log(this.deviceData.value);
+  this.deviceData.reset();
+  
 
+  
 }
 // onEdit()
 // {
@@ -113,6 +118,7 @@ onSubmit()
 closeEdit(){
   var ele:HTMLElement = document.getElementById("edit-data") as HTMLElement;
   ele.style.display = "none";
+ 
 }
  deleteRow(index){
    this.tableData.splice(index, 1);

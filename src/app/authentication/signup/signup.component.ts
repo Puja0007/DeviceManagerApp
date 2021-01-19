@@ -19,7 +19,7 @@ export class SignupComponent implements OnInit {
       'firstname':new FormControl(null,Validators.required),
      'lastname':new FormControl(null,Validators.required),
      'employeeID':new FormControl(null,Validators.required),
-     'psw':new FormControl('',[Validators.required,Validators.minLength(6),Validators.maxLength(10)]),
+     'psw':new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(10)]),
      'pswrepeat':new FormControl('',[Validators.required])
    },
    {

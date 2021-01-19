@@ -64,7 +64,7 @@
     </div>
 </div>
 
-<!-- Modal -->
+<!-- add-data-Modal -->
 <div class="model" id="add-new-data">
     <div class="model-content">
         <div class="full">
@@ -75,26 +75,26 @@
 
                     <form [formGroup]="deviceData" (ngSubmit)="onSubmit(deviceData)">
                         <label for="fname">First name</label>
-                        <input type="text" class="form-control" placeholder="Enter first name" formControlName="fname" id="fname" #fname>
+                        <input type="text" class="form-control" placeholder="Enter first name" formControlName="fname" id="fname">
 
                         <label for="lname">Last Name</label> `
-                        <input type="text" class="form-control" placeholder="Enter Last name" formControlName="lname" id="lname" #lname>
+                        <input type="text" class="form-control" placeholder="Enter Last name" formControlName="lname" id="lname">
 
                         <label for="email">Email</label>
-                        <input type="email" class="form-control" placeholder="Enter Email" formControlName="email" #email>
+                        <input type="email" class="form-control" placeholder="Enter Email" formControlName="email">
 
                         <label for="empid">Employee Id</label> `
-                        <input type="text" class="form-control" placeholder="Enter Employee id" formControlName="empid" id="empid" #empid>
+                        <input type="text" class="form-control" placeholder="Enter Employee id" formControlName="empid" id="empid">
 
 
                         <label for="psw">Password</label>
-                        <input type="password" class="form-control" placeholder="Enter Password" formControlName="psw" #psw>
+                        <input type="password" class="form-control" placeholder="Enter Password" formControlName="psw">
 
                         <label for="pswrpt">Re-type Password</label>
-                        <input type="password" class="form-control" placeholder="Enter Re-type password" formControlName="pswrpt" #pswrpt>
+                        <input type="password" class="form-control" placeholder="Enter Re-type password" formControlName="pswrpt">
 
 
-                        <button type="submit" class="btn btn-primary btn-lg btn-block" (click)="saveData(fname.value,lname.value,email.value,empid.value)">Add</button>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Add</button>
                         <br>
                     </form>
                 </div>
@@ -103,10 +103,40 @@
     </div>
 </div>
 
+<!-- edit modal -->
 
-  
+<div class="edit-model" id="edit-data">
+    <div class="edit-model-content">
+        <div class="full">
+            <div class="close" style="float: left;" (click)="closeEdit()">x</div>
+            <div class="form">
+                <div>
+                    <h2 style="font-size: 20px; font-weight: bold;">Edit User</h2>
+                    <br><br>
+                    <form [formGroup]="deviceData" (ngSubmit)="onSubmit(deviceData)">
+                        <label for="fname">First name</label>
+                        <input type="text" class="form-control" placeholder="Enter first name" formControlName="fname" id="fname">
 
-<!-- Modal -->
+                        <label for="lname">Last Name</label> `
+                        <input type="text" class="form-control" placeholder="Enter last name" formControlName="lname" id="name">
+
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" placeholder="Enter email" formControlName="email">
+
+                        <label for="empid">Employee Id</label> `
+                        <input type="text" class="form-control" placeholder="Enter employee id" formControlName="empid" id="empid">
+
+
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Edit</button>
+                        <br>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Details-Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content" style="padding: 25px;">
@@ -114,7 +144,7 @@
 
 
                 <ng-container *ngFor="let rowd of showData; let i = index">
-                    <h4 class="modal-title">{{rowd.name}}</h4>
+                    <h4 class="modal-title">{{rowd.fname+" "+rowd.lname}}</h4>
                     <p>{{rowd.empid}}</p>
                 </ng-container>
 
@@ -150,44 +180,6 @@
     </div>
 </div>
 
-
-
-
-
-
-<!-- edit modal -->
-
-<div class="edit-model" id="edit-data">
-    <div class="edit-model-content">
-        <div class="full">
-            <div class="close" style="float: left;" (click)="closeEdit()">x</div>
-            <div class="form">
-                <div>
-                    <h2 style="font-size: 20px; font-weight: bold;">Edit User</h2>
-                    <br><br>
-                    <form [formGroup]="deviceData" (ngSubmit)="onSubmit(deviceData)">
-                        <label for="fname">First name</label>
-                        <input type="text" class="form-control" placeholder="Enter first name" formControlName="fname" id="fname" #fname>
-
-                        <label for="lname">Last Name</label> `
-                        <input type="text" class="form-control" placeholder="Enter last name" formControlName="lname" id="name" #lname>
-
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" placeholder="Enter email" formControlName="email" #email>
-
-                        <label for="empid">Employee Id</label> `
-                        <input type="text" class="form-control" placeholder="Enter employee id" formControlName="empid" id="empid" #empid>
-
-
-                        <button type="submit" class="btn btn-primary btn-lg btn-block">Edit</button>
-                        <br>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- change password -->
 
 
@@ -198,17 +190,17 @@
             <div class="close" style="float: left;" (click)="closeChangepPassword()">x</div>
             <div class="form-psw">
                 <div>
-                    <h2 style="font-size: 20px; font-weight: bold;">Change {{user}} Password</h2>
+                    <h2 style="font-size: 20px; font-weight: bold;">Change {{user}}'s Password</h2>
 
                     <form [formGroup]="deviceData" (ngSubmit)="onSubmit(deviceData)">
                         <label for="psw">Password</label>
-                        <input type="password" class="form-control" placeholder="Enter Password" formControlName="psw" #psw>
+                        <input type="password" class="form-control" placeholder="Enter Password" formControlName="psw">
 
                         <label for="pswrpt">Re-type Password</label>
-                        <input type="password" class="form-control" placeholder="Enter Re-type password" formControlName="pswrpt" #pswrpt>
+                        <input type="password" class="form-control" placeholder="Enter Re-type password" formControlName="pswrpt">
 
 
-                        <button type="submit" class="btn btn-primary btn-lg btn-block" (click)="saveData(fname.value,lname.value,email.value,empid.value)">Add</button>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block" (click)="closePassword()">Add</button>
                         <br>
                     </form>
                 </div>
