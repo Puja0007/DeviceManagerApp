@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AccordianComponent } from './accordian/accordian.component';
 import { AuthGuard } from './auth.guard';
 import { SigninComponent } from './authentication/signin/signin.component';
 import { SignupComponent } from './authentication/signup/signup.component';
@@ -26,7 +27,11 @@ const routes: Routes = [
 //    canActivate:[RedirectGuard]
 //  },
  
+{
+  path: 'acc',
+  component:AccordianComponent
 
+},
 
  
   

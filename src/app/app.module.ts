@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { FeatherModule } from 'angular-feather';
 import { Camera, Heart, Github, User,Cpu,Eye,Plus,X } from 'angular-feather/icons';
 import { AuthGuard } from './auth.guard';
+import { AccordianComponent } from './accordian/accordian.component';
 
 
 
@@ -21,7 +22,8 @@ const icons = {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AccordianComponent
   
     
 
