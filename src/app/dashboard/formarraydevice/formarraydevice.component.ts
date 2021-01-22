@@ -23,7 +23,7 @@ addItemRows(){
    
   return this.fb.group({
     sno:['',[Validators.required]],
-    items:['',[Validators.required,Validators.pattern("!@#$%^&*()]+$"),this.checkNumber]],
+    items:['',[Validators.required,Validators.pattern('^(?=.*[a-zA-Z])[a-zA-Z0-9]+$')]],
     prices:['',[Validators.required,Validators.pattern("^[0-9]*$")]]
   })
 }

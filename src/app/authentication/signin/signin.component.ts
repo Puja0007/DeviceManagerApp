@@ -37,10 +37,10 @@ export class SigninComponent implements OnInit {
 {
   if(this.loginForm.valid)
   {
-    this.route.navigate(['/dashboard/devicelist']);
+    this.route.navigate(['/dashboard/device']);
     
     
-    localStorage.setItem('login',"10");
+    // localStorage.setItem('login',"10");
   }
   else{
     this.markFormGroupTouched(this.loginForm);

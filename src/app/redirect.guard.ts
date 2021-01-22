@@ -12,14 +12,16 @@ export class RedirectGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree 
     { 
-      if(localStorage.getItem('login'))
-      {
-        return true;
-      }
-    else{
-      this.route.navigate(['/signin']);
-        return false;
-    }
+    //   if(localStorage.getItem('login'))
+    //   {
+    //     return true;
+    //   }
+    // else{
+    //   this.route.navigate(['/signin']);
+    //     return false;
+    // }
+
+    return true;
   }
   
   

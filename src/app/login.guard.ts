@@ -11,13 +11,14 @@ export class LoginGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if(this.log.isLoggedIn())
-      {
-        return false;
-      }
-      else{
-        return true;
-      }
+      // if(this.log.isLoggedIn())
+      // {
+      //   return false;
+      // }
+      // else{
+      //   return true;
+      // }
+      return true;
     
   }
   
