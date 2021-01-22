@@ -32,16 +32,18 @@
                                 <tr *ngFor="let itemrow of addmore.controls.itemRows['controls']; let i = index" [formGroupName]="i">
                                     <td>{{i}}</td>
                                     <td>
-                                        <input type="text" id="items{{i}}" (keypress)="omit_special_char($event)" formControlName="items" class="form-control">
+                                        <input type="text" id="items{{i}}" formControlName="items" class="form-control">
                                         <p *ngIf="formArr.controls[i].get('items').errors?.required" class="text-danger">
                                             Item name is Required.
                                         </p>
+                                        <p *ngIf="formArr.controls[i].get('items').errors?.pattern" class="text-danger">Special Characters are not allowed.</p>
                                     </td>
 
-                                    <td><input type="number" id="prices{{i}}" formControlName="prices" class="form-control">
+                                    <td><input id="prices{{i}}" formControlName="prices" class="form-control">
                                         <p *ngIf="formArr.controls[i].get('prices').errors?.required" class="text-danger">
-                                            Price is Required.
+                                            Price is required.
                                         </p>
+                                        <p *ngIf="formArr.controls[i].get('prices').errors?.pattern" class="text-danger">Enter only number.</p>
                                         
                                     </td>
                                     <td>
