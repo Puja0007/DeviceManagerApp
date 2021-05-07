@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-formarraydevice',
@@ -13,53 +13,50 @@ export class FormarraydeviceComponent implements OnInit {
   public isValid = false;
   ngOnInit(): void {
     this.addmore=this.fb.group({
-      itemRows:this.fb.array([this.addItemRows(),Validators.required])
+      itemRows:this.fb.array([this.addItemRows()])
+      
     });
   }
-  get formArr(){
+  get itemRows() : FormArray{
     return this.addmore.get('itemRows') as FormArray;
   }
-addItemRows(){
+addItemRows() : FormGroup{
    
   return this.fb.group({
-    sno:['',[Validators.required]],
-    items:['',[Validators.required,Validators.pattern('^(?=.*[a-zA-Z])[a-zA-Z0-9]+$')]],
-    prices:['',[Validators.required,Validators.pattern("^[0-9]*$")]]
+    
+    items:['',Validators.compose([Validators.required,Validators.pattern('^(?=.*[a-zA-Z])[a-zA-Z0-9]+$')])],
+    prices:['',Validators.compose([Validators.required,Validators.pattern("^[0-9]*$")])]
   })
 }
+
+
+
 addNew(){
-  this.formArr.push(this.addItemRows());
+  this.itemRows.push(this.addItemRows());
 }
 deleteRow(i:number){
-  this.formArr.removeAt(i);
+  this.itemRows.removeAt(i);
 }
-// addNew(): void {
-//   this.formArr.push(this.fb.control(this.addItemRows(), Validators.required));
-// }
+
 getValidity(i) {
   return (<FormArray>this.addmore.get('itemRows')).controls[i].invalid;
 }
-// omit_special_char(event)
-// {   
-//    var k;  
-//    k = event.charCode;  //         k = event.keyCode;  (Both can be used)
-//    return((k > 64 && k < 91) || (k > 96 && k < 123) || k == 8 || k == 32 || (k >= 48 && k <= 57)); 
-// }
 
 
-checkNumber(control: AbstractControl): boolean {
-  // const price:string=control.value;
-  if(typeof(control.value) === "number")
-  {
-    return true;
-  }
-  else{
-   return false;
-  }
+
+// checkNumber(control: AbstractControl): boolean {
+//   // const price:string=control.value;
+//   if(typeof(control.value) === "number")
+//   {
+//     return true;
+//   }
+//   else{
+//    return false;
+//   }
   
-} 
+// } 
 submit(){
-  console.log(this.addmore.value);
+  console.log(this.addmore);
   
 }
 
