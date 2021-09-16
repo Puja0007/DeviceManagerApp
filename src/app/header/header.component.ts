@@ -7,10 +7,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+userName:string;
   constructor(private route:Router) { }
 
   ngOnInit(): void {
+    this.userName = localStorage.getItem('userName');
   }
   logout(){
     localStorage.removeItem("login");

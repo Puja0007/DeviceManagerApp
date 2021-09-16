@@ -18,6 +18,7 @@ export class SignupComponent implements OnInit {
     this.registerForm=this.fb.group({
       'firstname':new FormControl(null,Validators.required),
      'lastname':new FormControl(null,Validators.required),
+     'email':new FormControl(null,[Validators.required,Validators.pattern("^[a-z0-9A-Z._%+-]+@[a-z0-9A-Z.-]+\\.[a-z]{2,4}$")]),
      'employeeID':new FormControl(null,Validators.required),
      'psw':new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(10)]),
      'pswrepeat':new FormControl('',[Validators.required])

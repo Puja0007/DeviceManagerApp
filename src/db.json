@@ -1,0 +1,185 @@
+{
+  "devices": [
+    {
+      "brand": "Lenovo",
+      "name": "Lenovo IdeaPad",
+      "id": 3,
+      "device": 231,
+      "os": "Windows 10",
+      "ram": "8GB",
+      "memory": "512GB",
+      "imeiNo": "lenovo051",
+      "type": "Computer",
+      "enable": true,
+      "status": "Availabel"
+    },
+    {
+      "brand": "Dell",
+      "name": "Dell-vostro",
+      "id": 4,
+      "device": 121,
+      "os": "Windows 10",
+      "ram": "8GB",
+      "memory": "512GB",
+      "imeiNo": "dell089",
+      "type": "Computer",
+      "enable": true,
+      "status": "Available"
+    },
+    {
+      "brand": "HP",
+      "name": "hp-vostro",
+      "os": "Windows 10",
+      "ram": "8GB",
+      "memory": "512GB",
+      "imeiNo": "hp001",
+      "id": 6,
+      "device": 22,
+      "type": "Computer",
+      "enable": true,
+      "status": "Available"
+    },
+    {
+      "name": "Asus maxpro",
+      "brand": "Asus",
+      "type": "Computer",
+      "os": "linux",
+      "ram": "8",
+      "memory": "500",
+      "imeiNo": "asus-323423",
+      "id": 8,
+      "device": 321,
+      "enable": true,
+      "status": "Available"
+    },
+    {
+      "name": "Asus zenbook",
+      "brand": "Asus",
+      "type": "Computer",
+      "os": "windows",
+      "ram": "8",
+      "memory": "500",
+      "imeiNo": "asus-004",
+      "id": 9,
+      "device": 241,
+      "enable": true,
+      "status": "Available"
+    },
+    {
+      "device": 123,
+      "name": "Mac book pro",
+      "brand": "Mac",
+      "type": "Computer",
+      "os": "Mac",
+      "ram": "8",
+      "memory": "500",
+      "imeiNo": "Mac-004",
+      "enable": true,
+      "id": 10,
+      "status": "Available"
+    },
+    {
+      "device": 126,
+      "name": "Mac Pro",
+      "brand": "Mac",
+      "type": "Computer",
+      "os": "Mac",
+      "ram": "8",
+      "memory": "500",
+      "imeiNo": "Mac-006",
+      "enable": false,
+      "id": 11,
+      "status": "NA"
+    },
+    {
+      "device": 225,
+      "name": "HCL Light",
+      "brand": "HCL",
+      "type": "Computer",
+      "os": "windows",
+      "ram": "8",
+      "memory": "500",
+      "imeiNo": "hcl-01",
+      "enable": false,
+      "status": "NA",
+      "id": 12
+    },
+    {
+      "device": 420,
+      "name": "Asus Zenphone",
+      "brand": "Asus",
+      "type": "Mobile",
+      "os": "android",
+      "ram": "4",
+      "memory": "500",
+      "imeiNo": "asus-1109",
+      "enable": false,
+      "status": "NA",
+      "id": 13
+    },
+    {
+      "device": 291,
+      "name": "Lenovo-sueva",
+      "brand": "Lenovo",
+      "type": "Computer",
+      "os": "linux",
+      "ram": "8",
+      "memory": "500",
+      "imeiNo": "lenovo21",
+      "enable": false,
+      "status": "NA",
+      "id": 14
+    }
+  ],
+  "users": [
+    {
+      "name": "Puja Das",
+      "email": "thepuja@gmail.com",
+      "id": 1,
+      "emp": 185,
+      "status": "Active"
+    },
+    {
+      "name": "Anirban Pal",
+      "email": "anipaul@gmail.com",
+      "id": 2,
+      "emp": 186,
+      "status": "Active"
+    },
+    {
+      "name": "Samiran Parui",
+      "email": "sam@gmail.com",
+      "emp": 187,
+      "status": "Active",
+      "id": 3
+    },
+    {
+      "name": "Shilpa Roy",
+      "email": "silpa@gmail.com",
+      "emp": "210",
+      "status": "Active",
+      "id": 5
+    },
+    {
+      "name": "Riya Das",
+      "email": "177",
+      "password": "1234",
+      "id": 6
+    },
+    {
+      "name": "Riya Das",
+      "email": "thepuja4266@gmail.com",
+      "password": "1234",
+      "id": 7
+    }
+  ],
+  "assignDevices": [
+    {
+      "deviceId": [
+        291
+      ],
+      "empId": 210,
+      "id": 1
+    }
+  ]
+}

@@ -20,7 +20,7 @@ export class SigninComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm=this.fb.group({
-      'email':new FormControl('',[Validators.required,Validators.email]),
+      'email':new FormControl('',[Validators.required,Validators.pattern("^[a-z0-9A-Z._%+-]+@[a-z0-9A-Z.-]+\\.[a-z]{2,4}$")]),
       'pswrd':new FormControl('',[Validators.required])
     })
   }
@@ -36,7 +36,7 @@ export class SigninComponent implements OnInit {
   onSubmit()
 {
   if(this.loginForm.valid)
-  {
+  { localStorage.setItem('userName','Puja Das');
     this.route.navigate(['/dashboard/device']);
     
     

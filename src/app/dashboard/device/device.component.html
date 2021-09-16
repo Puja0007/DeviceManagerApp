@@ -18,10 +18,13 @@
                     <table class="table table-hover">
                         <thead class="table-secondary">
                             <tr>
+                                <th scope="col">Device Id</th>
+                                <th scope="col">Brand</th>
                                 <th scope="col">Name</th>
-                                <th scope="col">Device ID</th>
-                                <th scope="col">Type</th>
-                                <th scope="col">Assigned To</th>
+                                <th scope="col">Os</th>
+                                <!-- <th scope="col">Ram</th>
+                                <th scope="col">Memory</th>
+                                <th scope="col">IMEI No</th> -->
                                 <th scope="col">Status</th>
                                 <th scope="col">Actions</th>
                             </tr>
@@ -30,18 +33,21 @@
     
                             <ng-container *ngFor="let row of tableData; let i = index">
                                 <tr>
-                                    <td>{{row.brand}}</td> 
                                     <td>{{row.device}}</td>
-                                    <td>{{row.type}}</td>
-                                    <td>{{row.name !== 'undefind' ? row.name : 'NA'}}</td>
-                                    <td>Available</td>
+                                    <td>{{row.brand}}</td> 
+                                    <td>{{row.name}}</td>
+                                    <td>{{row.os}}</td>
+                                    <!-- <td>{{row.ram}}</td>
+                                    <td>{{row.memory}}</td>
+                                    <td>{{row.imeiNo}}</td> -->
+                                    <td>{{row.status}}</td>
                                     <td>
                                         <i class="fa fa-eye action text-primary" data-toggle="modal" rel="tooltip" title="Details" data-target="#myModal" aria-hidden="true" (click)="showDetails(i)"></i>&nbsp;&nbsp;
-                                        <i class="fa fa-plus-circle action text-primary" rel="tooltip" title="Assign Device" aria-hidden="true"></i>&nbsp;&nbsp;
-                                        <i class="fa fa-times-circle action text-danger" *ngIf="isValid[i];else other" rel="tooltip" title="Not Assigned" aria-hidden="true" (click)="setActive(i)"></i>&nbsp;&nbsp;
+                                        <i class="fa fa-plus-circle action text-primary" rel="tooltip" title="Assign Device" aria-hidden="true" data-toggle="modal" data-target="#myModal1" (click)="showAssignable(i)"></i>&nbsp;&nbsp;
+                                        <!-- <i class="fa fa-times-circle action text-danger" *ngIf="isValid[i];else other" rel="tooltip" title="Not Assigned" aria-hidden="true"  (click)="setActive(i)"></i>&nbsp;&nbsp;
                                             <ng-template #other>
                                                 <i class="fa fa-check text-success" rel="tooltip" title="Assigned" aria-hidden="true" (click)="setInactive(i)"></i>&nbsp;&nbsp;
-                                            </ng-template>
+                                            </ng-template> -->
                                         <i class="fa fa-pencil-square-o action text-warning" aria-hidden="true" rel="tooltip" title="Edit" (click)="editModel(i)"></i>&nbsp;&nbsp;
                                               
             
@@ -68,38 +74,40 @@
                         <h2 style="font-size: 20px; font-weight: bold;">New Device</h2>
                 
                         <form [formGroup]="deviceData" (ngSubmit)="onSubmit(deviceData)">
+                            <label for="brand">Device Id</label>
+                            <input type="number" class="form-control" placeholder="Enter device id" formControlName="device" id="device">
+
                             <label for="brand">Brand</label>
                             <input type="text" class="form-control" placeholder="Enter brand" formControlName="brand" id="brand">
 
                             <label for="name">Name</label> `
                             <input type="text" class="form-control" placeholder="Enter name" formControlName="name" id="name">
 
-                            <label for="device-id">Device ID</label>
-                            <input type="text" class="form-control" placeholder="Enter device id" formControlName="device">
+                            
 
                             <p>Device type</p>
                             <div class="checkbox">
                                 <div class="check1">
                                     <label>
-                                  <input (click)="changeShow()" type="radio" formControlName="type" id="device-type" value="computer">
+                                  <input (click)="changeShow()"  type="radio" formControlName="type" id="device-type" value="Computer">
                             computer</label>
                                 </div>
 
                                 <div class="check2">
                                     <label>
-                            <input (click)="changeShow()" type="radio" formControlName="type" id="device-type" value="mobile">
+                            <input (click)="changeShow()" type="radio"  formControlName="type" id="device-type" value="Mobile">
                             mobile</label>
                                 </div>
                                 <div class="check3">
                                     <label>
-                            <input (click)="changeShow()" type="radio" formControlName="type" id="device-type" value="peripheral">
+                            <input (click)="changeShow()" type="radio" formControlName="type" id="device-type" value="Peripheral">
                                 peripheral</label>
                                 </div>
                             </div>
                             <br>
                             <div *ngIf="show">
                                 <label for="OS">OS</label>
-                                <input type="text" class="form-control" placeholder="Enter OS" formControlName="OS" id="OS">
+                                <input type="text" class="form-control" placeholder="Enter OS" formControlName="os" id="OS">
 
                                 <label for="ram">Ram</label> `
                                 <input type="text" class="form-control" placeholder="Enter Ram" formControlName="ram" id="ram">
@@ -108,10 +116,10 @@
                                 <input type="text" class="form-control" placeholder="Enter Memory" formControlName="memory" id="memory">
 
                                 <label for="imei">IMEI Number</label>
-                                <input type="text" class="form-control" placeholder="Enter IMEI Number" formControlName="imei" id="imei">
+                                <input type="text" class="form-control" placeholder="Enter IMEI Number" formControlName="imeiNo" id="imei">
 
                             </div>
-                            <button type="submit" class="btn btn-primary btn-lg btn-block">Add</button>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]='deviceData.invalid'>Add</button>
                             <br>
                         </form>
                     </div>
@@ -130,38 +138,41 @@
                         <h2 style="font-size: 20px; font-weight: bold;">Edit Device</h2>
                         <br><br>
                         <form [formGroup]="deviceData" (ngSubmit)="onSubmit(deviceData)">
+
+                            <label for="device-id">Device ID</label>
+                            <input type="number" class="form-control" placeholder="Enter device id" formControlName="device">
+
                             <label for="brand">Brand</label>
                             <input type="text" class="form-control" placeholder="Enter brand" formControlName="brand" id="brand">
 
                             <label for="name">Name</label> `
                             <input type="text" class="form-control" placeholder="Enter name" formControlName="name" id="name">
 
-                            <label for="device-id">Device ID</label>
-                            <input type="text" class="form-control" placeholder="Enter device id" formControlName="device">
+                            
 
                             <p>Device type</p>
                             <div class="checkbox">
                                 <div class="check1">
                                     <label>
-                            <input type="radio" id="device-type" formControlName="type" value="computer">
+                            <input type="radio" id="device-computer"   formControlName="type" value="Computer">
                             computer</label>
                                 </div>
 
                                 <div class="check2">
                                     <label>
-                            <input type="radio" id="device-type" formControlName="type" value="mobile">
+                            <input type="radio" id="device-mobile" formControlName="type" value="Mobile">
                             mobile</label>
                                 </div>
                                 <div class="check3">
                                     <label>
-                            <input type="radio" id="device-type" formControlName="type" value="peripheral">
+                            <input type="radio" id="device-peripheral" formControlName="type"  value="Peripheral">
                             peripheral</label>
                                 </div>
                             </div>
                             <br>
                             <div>
                                 <label for="OS">OS</label>
-                                <input type="text" class="form-control" placeholder="Enter OS" formControlName="OS" id="OS">
+                                <input type="text" class="form-control" placeholder="Enter OS" formControlName="os" id="OS">
 
                                 <label for="ram">Ram</label> `
                                 <input type="text" class="form-control" placeholder="Enter Ram" formControlName="ram" id="ram">
@@ -170,7 +181,7 @@
                                 <input type="text" placeholder="Enter Memory" formControlName="memory" id="memory">
 
                                 <label for="imei">IMEI Number</label>
-                                <input type="text" class="form-control" placeholder="Enter IMEI Number" formControlName="imei" id="imei">
+                                <input type="text" class="form-control" placeholder="Enter IMEI Number" formControlName="imeiNo" id="imeiNo">
 
                             </div>
                             <button type="submit" class="btn btn-primary btn-lg btn-block">Edit</button>
@@ -204,7 +215,7 @@
                 <thead>
                   <tr>
                     
-                    <th scope="col">Device Id</th>
+                    <th scope="col">Device Name</th>
                     <th scope="col">Operating System</th>
                     <th scope="col">CPU</th>
                   </tr>
@@ -212,8 +223,8 @@
                 <tbody>
                     <ng-container *ngFor="let rowd of showData; let i = index">
                   <tr>
-                    <td>{{rowd.device}}</td>
-                    <td>{{rowd.OS}}</td>
+                    <td>{{rowd.name}}</td>
+                    <td>{{rowd.os}}</td>
                     <td>{{rowd.memory}}</td>
                     
                   </tr>
@@ -222,7 +233,7 @@
                 <thead>
                     <tr>
                       
-                      <th scope="col">GPU</th>
+                      <th scope="col">IMEI Number</th>
                       <th scope="col">RAM</th>
                       <th scope="col">Storage</th>
                     </tr>
@@ -231,7 +242,7 @@
                   <tbody>
                     <ng-container *ngFor="let rowd of showData; let i = index">
                     <tr>
-                      <td>{{rowd.imei}}</td>
+                      <td>{{rowd.imeiNo}}</td>
                       <td>{{rowd.ram}}</td>
                       <td>{{rowd.memory}}</td>
                       
@@ -247,5 +258,37 @@
       
         </div>
       </div>
+      <!-- assign device modal -->
+      <ng-container *ngIf="isAssignable">
+        <div id="myModal1" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                
+              <!-- Modal content-->
+              <div class="modal-content" style="padding: 25px;">
+                <div class="modal-body">
+                    <form [formGroup]="assignDeviceForm">
+                        <label for="psw">Employee Id *</label>
+                        <input type="number" class="form-control" placeholder="Enter employee Id" formControlName="empId">
     
+                        <label for="pswrpt">Device Id *</label>
+                        <input type="number" class="form-control" placeholder="Enter device Id" formControlName="deviceId"
+                           >
+    
+    
+                       
+                        <br>
+                    </form>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-primary float-right" data-dismiss="modal" [disabled]="assignDeviceForm.invalid" (click)="assignDevice()">Assign</button>
+                    <button type="button" class="btn btn-primary float-right mr-2" data-dismiss="modal">Close</button>
+                </div>  
+            </div>
+          
+            </div>
+          </div>
+      </ng-container>
+     
+    <!-- Assign devices modal -->
+
 </section>

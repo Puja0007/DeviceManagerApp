@@ -6,8 +6,11 @@
         <div class="row justify-content-center">
             <div class="col-12" style="margin-top:20px; background-color: white;">
                 <h3 style="display: inline;">
-                    <i-feather name="user" class="mr-2 text-primary"></i-feather>Users</h3>
-                <button style="float: right; margin-top:10px;" (click)="openNewForm()" class="btn btn-primary" data-bs-toggle="modal" (click)="addDataModal= true" data-bs-target="#add-device">ADD <i-feather name="plus"></i-feather></button>
+                    <i-feather name="user" class="mr-2 text-primary"></i-feather>Users
+                </h3>
+                <button style="float: right; margin-top:10px;" (click)="openNewForm()" class="btn btn-primary"
+                    data-bs-toggle="modal" (click)="addDataModal= true" data-bs-target="#add-device">ADD <i-feather
+                        name="plus"></i-feather></button>
                 <br><br>
                 <p>Admin can add, edit, activate or deactivate an user.</p>
             </div>
@@ -23,7 +26,6 @@
                             <th scope="col">Name</th>
                             <th scope="col">Employee ID</th>
                             <th scope="col">Email</th>
-                            <th scope="col">Devices</th>
                             <th scope="col">Status</th>
                             <th scope="col">Actions</th>
                         </tr>
@@ -32,27 +34,34 @@
 
                         <ng-container *ngFor="let row of tableData; let i = index">
                             <tr>
-                                <td>{{row.fname+" "+row.lname}}</td>
-                                <td>{{row.empid}}</td>
+                                <td>{{row.name}}</td>
+                                <td>{{row.emp}}</td>
                                 <td>{{row.email}}</td>
-                                <td>{{row.devices}}</td>
+                                
                                 <td>{{row.status}}</td>
                                 <td>
-                                    <i class="fa fa-eye action text-primary" data-toggle="modal" data-target="#exampleModal" aria-hidden="true" (click)="showDetails(i)"></i>&nbsp;&nbsp;
+                                    <i class="fa fa-eye action text-primary" data-toggle="modal"
+                                        data-target="#exampleModal" aria-hidden="true"
+                                        (click)="showDetails(i)"></i>&nbsp;&nbsp;
 
-                                    <i class="fa fa-lock text-warning" aria-hidden="true" (click)="changePasswordModal(i)"></i>&nbsp;&nbsp;
-                                    <i class="fa fa-pencil-square-o action text-primary" aria-hidden="true" (click)="editModel(i)"></i>&nbsp;&nbsp;
-                                    <ng-template #other>
-                                        <i class="fa fa-times-circle action text-danger" aria-hidden="true" (click)="setInactive(i)"></i>&nbsp;&nbsp;
+                                    <!-- <i class="fa fa-lock text-warning" aria-hidden="true"
+                                        (click)="changePasswordModal(i)"></i>&nbsp;&nbsp; -->
+                                    <i class="fa fa-pencil-square-o action text-primary" aria-hidden="true"
+                                        (click)="editModel(i)"></i>&nbsp;&nbsp;
+                                    <!-- <ng-template #other>
+                                        <i class="fa fa-times-circle action text-danger" aria-hidden="true"
+                                            (click)="setInactive(i)"></i>&nbsp;&nbsp;
 
-                                    </ng-template>
+                                    </ng-template> -->
 
 
-                                    <i class="fa fa-check text-success" *ngIf="isValid[i];else other" aria-hidden="true" (click)="setActive(i)"></i>&nbsp;&nbsp;
+                                    <!-- <i class="fa fa-check text-success" *ngIf="isValid[i];else other" aria-hidden="true"
+                                        (click)="setActive(i)"></i>&nbsp;&nbsp; -->
 
 
 
-                                    <i class="fa fa-trash action" aria-hidden="true" (click)="deleteRow(i)"></i>&nbsp;&nbsp;
+                                    <i class="fa fa-trash action" aria-hidden="true"
+                                        (click)="deleteRow(i)"></i>&nbsp;&nbsp;
                                 </td>
                             </tr>
                         </ng-container>
@@ -73,28 +82,23 @@
                 <div>
                     <h2 style="font-size: 20px; font-weight: bold;">New User</h2>
 
-                    <form [formGroup]="deviceData" (ngSubmit)="onSubmit(deviceData)">
-                        <label for="fname">First name</label>
-                        <input type="text" class="form-control" placeholder="Enter first name" formControlName="fname" id="fname">
-
-                        <label for="lname">Last Name</label> `
-                        <input type="text" class="form-control" placeholder="Enter Last name" formControlName="lname" id="lname">
-
+                    <form [formGroup]="userData" (ngSubmit)="onSubmit(userData)">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" placeholder="Enter name" formControlName="name"
+                            id="name">
+ 
                         <label for="email">Email</label>
                         <input type="email" class="form-control" placeholder="Enter Email" formControlName="email">
 
-                        <label for="empid">Employee Id</label> `
-                        <input type="text" class="form-control" placeholder="Enter Employee id" formControlName="empid" id="empid">
+                        <label for="emp">Employee Id</label> `
+                        <input type="number" class="form-control" placeholder="Enter Employee id" formControlName="emp"
+                            id="emp">
 
 
-                        <label for="psw">Password</label>
-                        <input type="password" class="form-control" placeholder="Enter Password" formControlName="psw">
 
-                        <label for="pswrpt">Re-type Password</label>
-                        <input type="password" class="form-control" placeholder="Enter Re-type password" formControlName="pswrpt">
-
-
-                        <button type="submit" class="btn btn-primary btn-lg btn-block">Add</button>
+                        <br>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block"
+                            [disabled]="userData.invalid">Add</button>
                         <br>
                     </form>
                 </div>
@@ -113,21 +117,20 @@
                 <div>
                     <h2 style="font-size: 20px; font-weight: bold;">Edit User</h2>
                     <br><br>
-                    <form [formGroup]="deviceData" (ngSubmit)="onSubmit(deviceData)">
-                        <label for="fname">First name</label>
-                        <input type="text" class="form-control" placeholder="Enter first name" formControlName="fname" id="fname">
-
-                        <label for="lname">Last Name</label> `
-                        <input type="text" class="form-control" placeholder="Enter last name" formControlName="lname" id="name">
-
+                    <form [formGroup]="userData" (ngSubmit)="onSubmit(userData)">
+                        <label for="fname">Name</label>
+                        <input type="text" class="form-control" placeholder="Enter name" formControlName="name"
+                            id="name">
                         <label for="email">Email</label>
                         <input type="email" class="form-control" placeholder="Enter email" formControlName="email">
 
-                        <label for="empid">Employee Id</label> `
-                        <input type="text" class="form-control" placeholder="Enter employee id" formControlName="empid" id="empid">
+                        <label for="emp">Employee Id</label> `
+                        <input type="number" class="form-control" placeholder="Enter employee id" formControlName="emp"
+                            id="emp">
 
-
-                        <button type="submit" class="btn btn-primary btn-lg btn-block">Edit</button>
+                        <br>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block"
+                            [disabled]="userData.invalid">Edit</button>
                         <br>
                     </form>
                 </div>
@@ -137,15 +140,16 @@
 </div>
 
 <!--Details-Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content" style="padding: 25px;">
             <div class="container">
 
 
                 <ng-container *ngFor="let rowd of showData; let i = index">
-                    <h4 class="modal-title">{{rowd.fname+" "+rowd.lname}}</h4>
-                    <p>{{rowd.empid}}</p>
+                    <h4 class="modal-title">{{rowd.name}}</h4>
+                    <p>{{rowd.emp}}</p>
                 </ng-container>
 
 
@@ -157,15 +161,15 @@
 
                             <th scope="col">Device name</th>
                             <th scope="col">Device id</th>
-                            <th scope="col">Assigned on</th>
+                            <th scope="col">Device Type</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <ng-container *ngFor="let rowd of showData; let i = index">
+                        <ng-container *ngFor="let rowd of assignDevicesNameId; let i = index">
                             <tr>
-                                <td>{{rowd.devicename}}</td>
-                                <td>{{rowd.deviceid}}</td>
-                                <td>{{rowd.assignedOn}}</td>
+                                <td>{{rowd.name}}</td>
+                                <td>{{rowd.id}}</td>
+                                <td>{{rowd.type}}</td>
 
                             </tr>
                         </ng-container>
@@ -173,7 +177,8 @@
                 </table>
             </div>
             <div>
-                <button type="button" class="btn btn-primary float-right" style="margin: 30px;" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary float-right" style="margin: 30px;"
+                    data-dismiss="modal">Close</button>
 
             </div>
         </div>
@@ -184,7 +189,7 @@
 
 
 
-<div class="change-password-model" id="change-password">
+<!-- <div class="change-password-model" id="change-password">
     <div class="change-model-content">
         <div class="full">
             <div class="close" style="float: left;" (click)="closeChangepPassword()">x</div>
@@ -192,19 +197,21 @@
                 <div>
                     <h2 style="font-size: 20px; font-weight: bold;">Change {{user}}'s Password</h2>
 
-                    <form [formGroup]="deviceData" (ngSubmit)="onSubmit(deviceData)">
+                    <form [formGroup]="userData" (ngSubmit)="onSubmit(userData)">
                         <label for="psw">Password</label>
                         <input type="password" class="form-control" placeholder="Enter Password" formControlName="psw">
 
                         <label for="pswrpt">Re-type Password</label>
-                        <input type="password" class="form-control" placeholder="Enter Re-type password" formControlName="pswrpt">
+                        <input type="password" class="form-control" placeholder="Enter Re-type password"
+                            formControlName="pswrpt">
 
 
-                        <button type="submit" class="btn btn-primary btn-lg btn-block" (click)="closePassword()">Add</button>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block"
+                            (click)="closePassword()">Add</button>
                         <br>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</div> -->
